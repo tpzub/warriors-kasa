@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/evidence-dluhu/static/css/main.e0d1002e.css",
+    "main.js": "/evidence-dluhu/static/js/main.abec037e.js",
+    "static/js/488.cfb40f1c.chunk.js": "/evidence-dluhu/static/js/488.cfb40f1c.chunk.js",
+    "index.html": "/evidence-dluhu/index.html",
+    "main.e0d1002e.css.map": "/evidence-dluhu/static/css/main.e0d1002e.css.map",
+    "main.abec037e.js.map": "/evidence-dluhu/static/js/main.abec037e.js.map",
+    "488.cfb40f1c.chunk.js.map": "/evidence-dluhu/static/js/488.cfb40f1c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e0d1002e.css",
+    "static/js/main.abec037e.js"
+  ]
+}

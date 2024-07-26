@@ -1,0 +1,614 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Reset stylů */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .nav-buttons{
+    flex-direction: column;
+    gap: 10px;
+    flex: none !important;
+  }
+
+  .nav-list li {
+    margin: 0px !important;
+  }
+
+  .nav-buttons li {
+    margin: 0px !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .summary-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summary-card {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  td form{
+    text-align: left !important;
+  }
+
+  .css-hlgwow {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .form-container select, .form-container input {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 10px 8px !important;
+  }
+
+  .login-form input, .login-form button, .login-form{
+    width: 90% !important;
+  }
+
+  .login-container h2 {
+    text-align: center;
+  }
+
+  .admin-evidence-table {
+    font-size: 15px !important;
+  }
+
+  .evidence-table {
+    font-size: 15px !important;
+  }
+
+  .nav-buttons{
+    flex-direction: column;
+    gap: 10px;
+    flex: none !important;
+    margin-top: 10px;
+  }
+
+  .css-b62m3t-container, .form-container button {
+    width: 100% !important;
+  }
+
+  .nav-list li {
+    margin: 0px !important;
+  }
+
+  .nav-buttons li {
+    margin: 0px !important;
+  }
+  .nav-list {
+    flex-direction: column-reverse !important;
+  }
+
+  .logo {
+    width: 120px !important;
+  }
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-container select, .form-container input{
+  box-sizing: border-box;
+  width: 50%;
+  padding: 8px;
+  border-style: solid;
+  border-color: hsl(0, 0%, 80%);
+  border-width: 1px;
+  min-height: 38px;
+  padding: 2px 8px;
+  font-size: 16px;
+}
+
+.form-container button {
+  width: 50%;
+  padding: 10px;
+}
+
+td form{
+  text-align: center;
+}
+
+td form button {
+  margin-left: 10px;
+}
+
+input, select {
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: 1px solid hsl(0, 0%, 80%);
+}
+
+.login-form input:focus, .login-form button:focus {
+  outline: none; /* Odstraní výchozí obrys */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Přidá jemný stín pro zvýraznění */
+}
+
+input:focus, select:focus {
+  outline: none; /* Odstraní výchozí obrys */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Přidá jemný stín pro zvýraznění */
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  margin: 0 10px;
+}
+
+.nav-right {
+  margin-left: auto;
+}
+
+.center-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.evidence-table th {
+  background-color: #f4f4f4;
+}
+
+.evidence-table tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.evidence-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.pokuta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px; /* Zmenšení textu ve sloupci Pokuty */
+}
+
+.pokuta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.edit-icon {
+  color: #2a9d8f;
+}
+
+.delete-icon {
+  color: #e76f51;
+}
+
+.edit-button, .add-button, .save-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ED1B26;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.cancel-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ccc;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #bbb;
+}
+
+.edit-button:hover, .add-button:hover, .save-button:hover{
+  background-color: darkred;
+}
+
+.icon.info-icon {
+  color: #ED1B26;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.icon.info-icon:hover {
+  color: darkred;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.evidence-table th, .evidence-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Přidáme styl pro centrální zarovnání tlačítka */
+.center-button {
+  display: block;
+  margin: 10px auto 0; /* Zarovná tlačítko na střed a přidá mezery */
+}
+
+option {
+  white-space: normal; /* Umožní zalomení textu na další řádek */
+  word-wrap: break-word;
+}
+
+.logo {
+  width: 150px;
+  padding: 0;
+  border: none;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.modal ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal ul li {
+  font-size: 15px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal ul li .index {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.modal ul li small {
+  margin-left: auto;
+  text-align: right;
+  color: grey;
+}
+
+.modal ul li .icon.delete-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.modal button.modal-close-button {
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 10px 20px;
+  background-color: #ED1B26;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button.modal-close-button:hover {
+  background-color: darkred;
+}
+
+.show-button {
+  background-color: #ccc;
+  border: none;
+  color: black;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.show-button:hover {
+  background-color: #bbb;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  flex: 2;
+}
+
+.nav-buttons li {
+  margin: 0 15px;
+}
+
+.nav-list li {
+  margin: 0 10px;
+}
+
+.nav-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-list li a,
+.nav-list li button {
+  text-decoration: none;
+  padding: 10px 80px;
+  border: 2px solid #ed1b26;
+  background-color: #ed1b26;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  display: flex;
+}
+
+.nav-list li a:hover,
+.nav-list li button:hover {
+  background-color: darkred;
+  border-color: darkred;
+}
+
+.nav-list li a.active,
+.nav-list li button.active {
+  background-color: white;
+  color: #ed1b26;
+  border-color: #ed1b26;
+}
+
+.logout-button,
+.login-button {
+  background-color: none !important;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.logout-button:hover,
+.login-button:hover {
+  background-color: darkred;
+}
+
+.login-button a {
+  color: white;
+  text-decoration: none;
+}
+
+a.logo-link {
+  padding: 0px !important;
+  background-color: white !important;
+  border: none !important;
+}
+
+.auth-button {
+  background: #ccc !important;
+  border: none !important;
+  color: black !important;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 40px !important;
+}
+
+.auth-button:hover {
+  background-color: darkgray !important;
+}
+
+.auth-button a {
+  color: gray;
+  text-decoration: underline;
+}
+
+.auth-button a:hover {
+  color: darkgray;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background-color: #f4f4f4;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  max-width: 400px;
+}
+
+.login-form input,
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-form button {
+  background-color: #ed1b26;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-form button:hover {
+  background-color: darkred;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.summary-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.summary-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+
+.summary-card h3 {
+  margin: 10px 0 0;
+  color: #333;
+}
+
+.summary-card p {
+  margin: 0;
+  color: #666;
+}
+
+.summary-icon {
+  font-size: 2em;
+  color: #ed1b26;
+}
+
+.css-b62m3t-container {
+  width: 50%;
+}
+
+.css-hlgwow {
+  font-size: 16px;
+}
+
+.admin-table-container {
+  overflow-x: auto;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.admin-evidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.admin-evidence-table th, .admin-evidence-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.admin-evidence-table th {
+  background-color: #f4f4f4;
+}
+
+.admin-evidence-table tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.admin-evidence-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.css-13cymwt-control:focus {
+  border-color: #ed1b26 !important;
+}
+
+.css-19bb58m {
+  margin: 0px !important;
+  padding: 0px !important;
+}

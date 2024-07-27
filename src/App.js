@@ -191,7 +191,7 @@ const AppContent = () => {
 
   const handleLogout = async () => {
     await auth.signOut();
-    navigate('/');
+    navigate('/warriors-kasa');
   };
 
   return (

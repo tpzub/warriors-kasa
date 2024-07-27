@@ -9,16 +9,16 @@ const Header = ({ isEvidencePage, setIsEvidencePage, user, handleLogout }) => {
       <nav>
         <ul className="nav-list">
           <li className="logo-container">
-            <Link to={user ? "/admin" : "/"} className="logo-link">
+            <Link to={user ? "/admin" : "/warriors-kasa"} className="logo-link">
               <img src={logo} alt="Logo" className="logo" />
             </Link>
           </li>
           <div className="nav-buttons">
             <li>
-              <Link to={user ? "/admin" : "/"} onClick={() => setIsEvidencePage(true)} className={isEvidencePage ? 'active' : ''}>Dluhy</Link>
+              <Link to={user ? "/admin" : "/warriors-kasa"} onClick={() => setIsEvidencePage(true)} className={isEvidencePage ? 'active' : ''}>Dluhy</Link>
             </li>
             <li>
-              <Link to={user ? "/admin" : "/"} onClick={() => setIsEvidencePage(false)} className={!isEvidencePage ? 'active' : ''}>Pokuty</Link>
+              <Link to={user ? "/admin" : "/warriors-kasa"} onClick={() => setIsEvidencePage(false)} className={!isEvidencePage ? 'active' : ''}>Pokuty</Link>
             </li>
           </div>
           {user ? (

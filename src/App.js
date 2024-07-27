@@ -204,7 +204,7 @@ const AppContent = () => {
         handleLogout={handleLogout}
       />
       <Routes>
-        <Route path="/" element={isEvidencePage ? <PublicView hraci={hraci} /> : <PublicPenalties pokuty={pokuty} />} />
+        <Route path="/warriors-kasa" element={isEvidencePage ? <PublicView hraci={hraci} /> : <PublicPenalties pokuty={pokuty} />} />
         <Route path="/admin" element={
           user ? (
             isEvidencePage ? (

@@ -79,8 +79,10 @@ const PlayerTable = ({
                   <>
                     {hrac.jmeno}
                     <>
+                    <span className='action-buttons'>
                       <FaEdit className="icon edit-icon" onClick={() => { setEditHracId(hrac.id); setEditHracJmeno(hrac.jmeno); }} />
                       <FaTrashAlt className="icon delete-icon" onClick={() => deleteHrac(hrac.id)} />
+                    </span>    
                     </>
                   </>
                 )}
@@ -108,7 +110,9 @@ const PlayerTable = ({
                   <>
                     {hrac.zaplatil || 0} Kč
                     <>
+                    <span className='action-buttons'>
                       <FaEdit className="icon edit-icon" onClick={() => setEditPaidAmountId(hrac.id)} />
+                    </span>   
                     </>
                   </>
                 )}

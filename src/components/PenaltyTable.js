@@ -65,13 +65,17 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
               <td>
                 {editing === pokuta.id ? (
                   <>
+                  <span className='action-buttons'>
                     <button className="save-button" onClick={() => saveEditing(pokuta.id)}>Uložit</button>
                     <button className="cancel-button" onClick={cancelEditing}>Zpět</button>
+                  </span>
                   </>
                 ) : (
                   <>
+                  <span className='action-buttons'>
                     <FaEdit className="icon edit-icon" onClick={() => startEditing(pokuta)} />
                     <FaTrashAlt className="icon delete-icon" onClick={() => deletePokuta(pokuta.id)} />
+                  </span>
                   </>
                 )}
               </td>

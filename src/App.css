@@ -137,10 +137,6 @@ td form{
   text-align: center;
 }
 
-td form button {
-  margin-left: 10px;
-}
-
 input, select {
   padding: 5px;
   border-radius: 4px;
@@ -596,4 +592,8 @@ h2 {
 .css-19bb58m {
   margin: 0px !important;
   padding: 0px !important;
+}
+
+td button.save-button {
+  margin-left: 10px;
 }

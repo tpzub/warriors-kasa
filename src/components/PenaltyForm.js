@@ -10,7 +10,6 @@ const PenaltyForm = ({ addNewPokuta }) => {
       alert('Prosím vyplňte název a částku pokuty.');
       return;
     }
-    console.log('Submitting new penalty:', { nazev, castka });
     addNewPokuta(e, nazev, castka);
     setNazev('');
     setCastka('');

@@ -174,6 +174,21 @@ const AppContent = () => {
     toast.success('Nová pokuta úspěšně přidána!');
   };
 
+  const editPokuta = async (id, newNazev, newCastka) => {
+    try {
+      const pokutaDoc = doc(firestore, 'pokuty', id);
+      await updateDoc(pokutaDoc, {
+        nazev: newNazev,
+        castka: Number(newCastka)
+      });
+      fetchPokuty();
+      toast.success('Pokuta úspěšně upravena!');
+    } catch (error) {
+      console.error('Error updating pokuta:', error);
+      toast.error('Chyba při úpravě pokuty.');
+    }
+  };
+
   const handlePaidAmountChange = (e, hracId) => {
     const value = e.target.value;
     setPaidAmounts({ ...paidAmounts, [hracId]: value });
@@ -239,6 +254,7 @@ const AppContent = () => {
                 <PenaltyTable
                   pokuty={pokuty}
                   deletePokuta={deletePokuta}
+                  editPokuta={editPokuta}
                 />
               </>
             )

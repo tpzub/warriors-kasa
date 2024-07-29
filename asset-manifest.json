@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/warriors-kasa/static/css/main.7c91ae08.css",
-    "main.js": "/warriors-kasa/static/js/main.b98aa14b.js",
+    "main.css": "/warriors-kasa/static/css/main.bd20693a.css",
+    "main.js": "/warriors-kasa/static/js/main.7848a11b.js",
     "static/js/488.a1a0d91e.chunk.js": "/warriors-kasa/static/js/488.a1a0d91e.chunk.js",
     "static/media/logo.png": "/warriors-kasa/static/media/logo.412f9e476ad1becb60b0.png",
     "index.html": "/warriors-kasa/index.html",
-    "main.7c91ae08.css.map": "/warriors-kasa/static/css/main.7c91ae08.css.map",
-    "main.b98aa14b.js.map": "/warriors-kasa/static/js/main.b98aa14b.js.map",
+    "main.bd20693a.css.map": "/warriors-kasa/static/css/main.bd20693a.css.map",
+    "main.7848a11b.js.map": "/warriors-kasa/static/js/main.7848a11b.js.map",
     "488.a1a0d91e.chunk.js.map": "/warriors-kasa/static/js/488.a1a0d91e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c91ae08.css",
-    "static/js/main.b98aa14b.js"
+    "static/css/main.bd20693a.css",
+    "static/js/main.7848a11b.js"
   ]
 }

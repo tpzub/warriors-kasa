@@ -47,8 +47,8 @@ const PlayerTable = ({
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
   return (
-    <div className="admin-table-container">
-      <table className="admin-evidence-table">
+    <div className="table-container">
+      <table className="evidence-table">
         <thead>
           <tr>
             <th>#</th>

@@ -24,10 +24,13 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
     setSelectedPokuta(null);
   };
 
-  const hraciOptions = hraci.map(hrac => ({
-    value: hrac.id,
-    label: hrac.jmeno
-  }));
+  const hraciOptions = [
+    { value: 'select_all', label: 'Vybrat všechny' },
+    ...hraci.map(hrac => ({
+      value: hrac.id,
+      label: hrac.jmeno
+    }))
+  ];
 
   const pokutyOptions = pokuty.map(pokuta => ({
     value: pokuta.id,
@@ -35,12 +38,20 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
     castka: pokuta.castka
   }));
 
+  const handleHraciChange = (selectedOptions) => {
+    if (selectedOptions.some(option => option.value === 'select_all')) {
+      setSelectedHraci(hraciOptions.slice(1)); // Vyber všechny hráče kromě "Vybrat všechny"
+    } else {
+      setSelectedHraci(selectedOptions);
+    }
+  };
+
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <Select
         isMulti
         value={selectedHraci}
-        onChange={setSelectedHraci}
+        onChange={handleHraciChange}
         options={hraciOptions}
         placeholder="Vyber hráče"
         classNamePrefix="custom-select"

@@ -5,7 +5,7 @@ const PublicPenalties = ({ pokuty }) => {
   return (
     <div className="table-container">
       <h2 className="center-text">Přehled pokut</h2>
-      <table className="evidence-table">
+      <table className="evidence-table-penalties">
         <thead>
           <tr>
             <th>#</th>

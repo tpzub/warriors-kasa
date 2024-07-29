@@ -118,7 +118,6 @@ body {
 }
 
 .form-container select, .form-container input{
-  box-sizing: border-box;
   width: 50%;
   padding: 8px;
   border-style: solid;
@@ -181,6 +180,16 @@ input:focus, select:focus {
   margin-bottom: 20px;
 }
 
+.table-container {
+  overflow-x: auto;
+}
+
+.evidence-table th, .evidence-table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
 .evidence-table {
   width: 100%;
   border-collapse: collapse;
@@ -199,6 +208,33 @@ input:focus, select:focus {
 }
 
 .evidence-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.evidence-table-penalties th, .evidence-table-penalties td {
+  padding: 5px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.evidence-table-penalties {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.evidence-table-penalties th {
+  background-color: #f4f4f4;
+}
+
+.evidence-table-penalties tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.evidence-table-penalties tr:hover {
   background-color: #f1f1f1;
 }
 
@@ -267,27 +303,6 @@ input:focus, select:focus {
 
 .icon.info-icon:hover {
   color: darkred;
-}
-
-.table-container {
-  overflow-x: auto;
-}
-
-.evidence-table th, .evidence-table td {
-  padding: 8px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-/* Přidáme styl pro centrální zarovnání tlačítka */
-.center-button {
-  display: block;
-  margin: 10px auto 0; /* Zarovná tlačítko na střed a přidá mezery */
-}
-
-option {
-  white-space: normal; /* Umožní zalomení textu na další řádek */
-  word-wrap: break-word;
 }
 
 .logo {
@@ -517,7 +532,6 @@ a.logo-link {
   margin: 10px 0;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
 .login-form button {
@@ -573,35 +587,6 @@ h2 {
 
 .css-hlgwow {
   font-size: 16px;
-}
-
-.admin-table-container {
-  overflow-x: auto;
-  width: 100%;
-  margin: 20px 0;
-}
-
-.admin-evidence-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 15px;
-}
-
-.admin-evidence-table th, .admin-evidence-table td {
-  padding: 8px;
-  border: 1px solid #ddd;
-}
-
-.admin-evidence-table th {
-  background-color: #f4f4f4;
-}
-
-.admin-evidence-table tr:nth-of-type(even) {
-  background-color: #f9f9f9;
-}
-
-.admin-evidence-table tr:hover {
-  background-color: #f1f1f1;
 }
 
 .css-13cymwt-control:focus {

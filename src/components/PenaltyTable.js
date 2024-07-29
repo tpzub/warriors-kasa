@@ -4,7 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 const PenaltyTable = ({ pokuty, deletePokuta }) => {
   return (
     <div className="table-container">
-      <table className="evidence-table">
+      <table className="evidence-table-penalties">
         <thead>
           <tr>
             <th>#</th>

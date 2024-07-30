@@ -22,37 +22,39 @@ const PublicView = ({ hraci }) => {
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
   return (
-    <div className="table-container">
-      <h2 className="center-text">Přehled dluhů</h2>
-      <table className="evidence-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Hráč</th>
-            <th>Pokuty</th>
-            <th>Dluh celkem</th>
-            <th>Zaplatil</th>
-            <th>Ještě dluží</th>
-          </tr>
-        </thead>
-        <tbody>
-          {hraci.map((hrac, index) => (
-            <tr key={hrac.id}>
-              <td>{index + 1}</td>
-              <td>{hrac.jmeno}</td>
-              <td>
-                <span onClick={() => openModal(hrac)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-                  {hrac.pokuty.length}
-                  <button onClick={() => openModal(hrac)} className="show-button">Ukázat</button>
-                </span>
-              </td>
-              <td>{hrac.dluhCelkem} Kč</td>
-              <td>{hrac.zaplatil || 0} Kč</td>
-              <td>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</td>
+    <div>
+      <h2 className="center-text ">Přehled dluhů</h2>
+      <div className="table-container">
+        <table className="evidence-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Hráč</th>
+              <th>Pokuty</th>
+              <th>Dluh celkem</th>
+              <th>Zaplatil</th>
+              <th>Ještě dluží</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {hraci.map((hrac, index) => (
+              <tr key={hrac.id}>
+                <td>{index + 1}</td>
+                <td>{hrac.jmeno}</td>
+                <td>
+                  <span onClick={() => openModal(hrac)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                    {hrac.pokuty.length}
+                    <button onClick={() => openModal(hrac)} className="show-button">Ukázat</button>
+                  </span>
+                </td>
+                <td>{hrac.dluhCelkem} Kč</td>
+                <td>{hrac.zaplatil || 0} Kč</td>
+                <td>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div className="summary-container">
         <div className="summary-card">

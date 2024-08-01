@@ -26,7 +26,7 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
   };
 
   return (
-    <div className="table-container">
+    <><div className="table-container">
       <table className="evidence-table-penalties">
         <thead>
           <tr>
@@ -45,8 +45,7 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
                   <input
                     type="text"
                     value={newNazev}
-                    onChange={(e) => setNewNazev(e.target.value)}
-                  />
+                    onChange={(e) => setNewNazev(e.target.value)} />
                 ) : (
                   pokuta.nazev
                 )}
@@ -56,8 +55,7 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
                   <input
                     type="number"
                     value={newCastka}
-                    onChange={(e) => setNewCastka(e.target.value)}
-                  />
+                    onChange={(e) => setNewCastka(e.target.value)} />
                 ) : (
                   `${pokuta.castka} Kč`
                 )}
@@ -65,17 +63,17 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
               <td>
                 {editing === pokuta.id ? (
                   <>
-                  <span className='action-buttons'>
-                    <button className="save-button" onClick={() => saveEditing(pokuta.id)}>Uložit</button>
-                    <button className="cancel-button" onClick={cancelEditing}>Zpět</button>
-                  </span>
+                    <span className='action-buttons'>
+                      <button className="save-button" onClick={() => saveEditing(pokuta.id)}>Uložit</button>
+                      <button className="cancel-button" onClick={cancelEditing}>Zpět</button>
+                    </span>
                   </>
                 ) : (
                   <>
-                  <span className='action-buttons'>
-                    <FaEdit className="icon edit-icon" onClick={() => startEditing(pokuta)} />
-                    <FaTrashAlt className="icon delete-icon" onClick={() => deletePokuta(pokuta.id)} />
-                  </span>
+                    <span className='action-buttons'>
+                      <FaEdit className="icon edit-icon" onClick={() => startEditing(pokuta)} />
+                      <FaTrashAlt className="icon delete-icon" onClick={() => deletePokuta(pokuta.id)} />
+                    </span>
                   </>
                 )}
               </td>
@@ -84,6 +82,13 @@ const PenaltyTable = ({ pokuty, deletePokuta, editPokuta }) => {
         </tbody>
       </table>
     </div>
+    <div className='penalties-notice'>
+        <ul>
+          <li><span className='bold-text'>Menší tresty se sčítají!</span></li>
+          <li><span className='bold-text'>Play-off x2!</span> (neplatí pro pozitivní věci jako gól, asistence, atd.)</li>
+        </ul>
+      </div>
+      </>
   );
 };
 

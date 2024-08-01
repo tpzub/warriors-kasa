@@ -664,3 +664,30 @@ td button.cancel-button {
   display: flex;
   align-items: center;
 }
+
+.penalties-notice {
+  font-size: 15px;
+  padding: 10px;
+  background-color: #ffbdbd;
+  margin-top: 10px;
+  border: 1px red solid;
+  border-radius: 10px;
+  list-style-type: none !important; /* Remove default bullet points */
+  padding-left: 5px; /* Adjust padding to move custom markers */
+}
+
+.penalties-notice li {
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 20px; /* Adjust padding to move custom markers */
+}
+
+.penalties-notice li::before {
+  content: "❗"; /* Emoji used as custom marker */
+  position: absolute;
+  left: 0;
+}
+
+.penalties-notice li::marker {
+  content: ''; /* Remove default markers */
+}

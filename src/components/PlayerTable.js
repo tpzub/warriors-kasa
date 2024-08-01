@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaEdit, FaTrashAlt, FaMoneyBillWave, FaHandHoldingUsd, FaCoins } from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaUpload, FaMoneyBillWave, FaHandHoldingUsd, FaCoins } from 'react-icons/fa';
 import Modal from 'react-modal';
+import playerPlaceholder from '../assets/player-placeholder.png';
 
 const PlayerTable = ({
   hraci,
@@ -18,7 +19,8 @@ const PlayerTable = ({
   paidAmounts,
   addHrac,
   newHrac,
-  setNewHrac
+  setNewHrac,
+  handlePhotoUpload
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
@@ -41,7 +43,6 @@ const PlayerTable = ({
     });
   };
 
-  // Výpočet součtů jednotlivých sloupců
   const totalDebt = hraci.reduce((sum, hrac) => sum + hrac.dluhCelkem, 0);
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
@@ -78,13 +79,22 @@ const PlayerTable = ({
                     </form>
                   ) : (
                     <>
-                      {hrac.jmeno}
-                      <>
-                      <span className='action-buttons'>
+                      <span className='photo-and-name'>
+                        {hrac.photoURL ? (
+                          <img src={hrac.photoURL} alt="Player" className="player-photo" />
+                        ) : (
+                          <img src={playerPlaceholder} alt="Placeholder" className="player-photo" />
+                        )}
+                        {hrac.jmeno}
+                      </span>
+                      <span className="action-buttons">
+                        <label>
+                          <FaUpload className="icon upload-icon" />
+                          <input type="file" style={{ display: 'none' }} onChange={(e) => handlePhotoUpload(e, hrac.id)} />
+                        </label>
                         <FaEdit className="icon edit-icon" onClick={() => { setEditHracId(hrac.id); setEditHracJmeno(hrac.jmeno); }} />
                         <FaTrashAlt className="icon delete-icon" onClick={() => deleteHrac(hrac.id)} />
-                      </span>    
-                      </>
+                      </span>
                     </>
                   )}
                 </td>
@@ -94,7 +104,7 @@ const PlayerTable = ({
                     <button onClick={() => openModal(hrac)} className="show-button">Ukázat</button>
                   </span>
                 </td>
-                <td>{hrac.dluhCelkem} Kč</td>
+                <td><span className='amount'>{hrac.dluhCelkem} Kč</span></td>
                 <td>
                   {editPaidAmountId === hrac.id ? (
                     <form onSubmit={(e) => { e.preventDefault(); handleSavePaidAmount(hrac.id); }}>
@@ -109,16 +119,16 @@ const PlayerTable = ({
                     </form>
                   ) : (
                     <>
-                      {hrac.zaplatil || 0} Kč
-                      <>
-                      <span className='action-buttons'>
-                        <FaEdit className="icon edit-icon" onClick={() => setEditPaidAmountId(hrac.id)} />
-                      </span>   
-                      </>
+                      <span className='zaplatil-a-ikona'>
+                        <span className='amount'>{hrac.zaplatil || 0} Kč</span>
+                        <span className="action-buttons">
+                          <FaEdit className="icon edit-icon" onClick={() => setEditPaidAmountId(hrac.id)} />
+                        </span>
+                      </span>
                     </>
                   )}
                 </td>
-                <td>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</td>
+                <td><span className='amount'>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span></td>
               </tr>
             ))}
             <tr>
@@ -138,7 +148,16 @@ const PlayerTable = ({
         </table>
 
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="overlay">
-          <h2>{currentPlayer.jmeno}</h2>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <div className="overflow-hidden rounded-circle" style={{ width: '48px', height: '48px', marginRight: '10px' }}>
+              <img
+                src={currentPlayer.photoURL || playerPlaceholder}
+                alt="Player"
+                className="player-photo"
+              />
+            </div>
+            <h2 style={{ margin: 0 , fontSize: '20px'}}>{currentPlayer.jmeno}</h2>
+          </div>
           <ul>
             {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => (
               <li key={index}>
@@ -168,8 +187,7 @@ const PlayerTable = ({
           <h3>{totalRemaining} Kč</h3>
         </div>
       </div>
-
-    </div>  
+    </div>
   );
 };
 

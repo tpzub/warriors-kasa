@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { firestore, auth } from './firebase/firebaseConfig';
+import { firestore, auth, storage } from './firebase/firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +14,7 @@ import Login from './components/Login';
 import PublicView from './components/PublicView';
 import PublicPenalties from './components/PublicPenalties';
 import { collection, getDocs, arrayUnion, increment, doc, updateDoc, addDoc, deleteDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const App = () => {
   return (
@@ -76,8 +77,10 @@ const AppContent = () => {
     setPokuty(pokutyData);
   };
 
+  const generateId = () => '_' + Math.random().toString(36).substring(2, 11);
+
   const addPokuta = async (hracIds, pokuta) => {
-    const selectedPokuta = { ...pokuta, datum: new Date().toLocaleDateString() };
+    const selectedPokuta = { ...pokuta, datum: new Date().toLocaleDateString(), id: generateId() }; // Ensure unique ID
     const hraciData = [...hraci];
   
     for (let hracId of hracIds) {
@@ -88,10 +91,10 @@ const AppContent = () => {
         continue;
       }
       const hracDataItem = hraciData[hracIndex];
-      const updatedPokuty = [...hracDataItem.pokuty, selectedPokuta];
+      const updatedPokuty = [...hracDataItem.pokuty, selectedPokuta]; // Manually add fine to array
   
       await updateDoc(hracDoc, {
-        pokuty: arrayUnion(selectedPokuta),
+        pokuty: updatedPokuty,
         dluhCelkem: increment(pokuta.castka)
       });
   
@@ -101,6 +104,8 @@ const AppContent = () => {
     setHraci(hraciData);
     toast.success('Pokuta byla úspěšně přidána');
   };
+  
+  
 
   const addHrac = async (e) => {
     e.preventDefault();
@@ -108,7 +113,8 @@ const AppContent = () => {
       jmeno: newHrac,
       pokuty: [],
       dluhCelkem: 0,
-      zaplatil: 0
+      zaplatil: 0,
+      photoURL: ''
     });
     setNewHrac('');
     fetchHraci();
@@ -154,15 +160,30 @@ const AppContent = () => {
       const hracDoc = doc(firestore, 'hraci', hracId);
       const hracData = hraci.find(h => h.id === hracId);
       const pokutaToDelete = hracData.pokuty[index];
+  
+      if (!pokutaToDelete) {
+        console.error('Pokuta to delete not found');
+        return;
+      }
+  
       const updatedPokuty = hracData.pokuty.filter((_, i) => i !== index);
+      const updatedDluhCelkem = hracData.dluhCelkem - pokutaToDelete.castka;
+  
       await updateDoc(hracDoc, {
         pokuty: updatedPokuty,
-        dluhCelkem: increment(-pokutaToDelete.castka)
+        dluhCelkem: updatedDluhCelkem
       });
-      fetchHraci();
+  
+      const updatedHraci = hraci.map(hrac =>
+        hrac.id === hracId ? { ...hrac, pokuty: updatedPokuty, dluhCelkem: updatedDluhCelkem } : hrac
+      );
+  
+      setHraci(updatedHraci);
       toast.success('Pokuta úspěšně smazána!');
     }
   };
+  
+  
 
   const addNewPokuta = async (e, nazev, castka) => {
     e.preventDefault();
@@ -209,6 +230,22 @@ const AppContent = () => {
     navigate('/warriors-kasa');
   };
 
+  const handlePhotoUpload = async (event, hracId) => {
+    const file = event.target.files[0];
+    if (file) {
+      const storageRef = ref(storage, `player_photos/${hracId}`);
+      await uploadBytes(storageRef, file);
+      const photoURL = await getDownloadURL(storageRef);
+
+      const hracDoc = doc(firestore, 'hraci', hracId);
+      await updateDoc(hracDoc, {
+        photoURL
+      });
+      fetchHraci();
+      toast.success('Fotografie hráče byla úspěšně nahrána!');
+    }
+  };
+
   return (
     <div className="container">
       <ToastContainer />
@@ -245,6 +282,7 @@ const AppContent = () => {
                   addHrac={addHrac}
                   newHrac={newHrac}
                   setNewHrac={setNewHrac}
+                  handlePhotoUpload={handlePhotoUpload} // Pass the handlePhotoUpload function
                 />
               </>
             ) : (

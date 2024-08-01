@@ -34,7 +34,7 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
 
   const pokutyOptions = pokuty.map(pokuta => ({
     value: pokuta.id,
-    label: `${pokuta.nazev} - ${pokuta.castka} Kč`,
+    label: `${pokuta.nazev}: ${pokuta.castka} Kč`,
     castka: pokuta.castka
   }));
 

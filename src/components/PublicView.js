@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FaCoins, FaHandHoldingUsd, FaMoneyBillWave } from 'react-icons/fa';
+import playerPlaceholder from '../assets/player-placeholder.png';
 
 const PublicView = ({ hraci }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -16,7 +17,6 @@ const PublicView = ({ hraci }) => {
     setCurrentPlayer({});
   };
 
-  // Výpočet součtů jednotlivých sloupců
   const totalDebt = hraci.reduce((sum, hrac) => sum + hrac.dluhCelkem, 0);
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
@@ -40,7 +40,16 @@ const PublicView = ({ hraci }) => {
             {hraci.map((hrac, index) => (
               <tr key={hrac.id}>
                 <td>{index + 1}</td>
-                <td>{hrac.jmeno}</td>
+                <td>
+                  <span className='photo-and-name'>
+                    {hrac.photoURL ? (
+                      <img src={hrac.photoURL} alt="Player" className="player-photo" />
+                    ) : (
+                      <img src={playerPlaceholder} alt="Placeholder" className="player-photo" />
+                    )}
+                    {hrac.jmeno}
+                  </span>
+                </td>
                 <td>
                   <span onClick={() => openModal(hrac)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
                     {hrac.pokuty.length}
@@ -75,7 +84,16 @@ const PublicView = ({ hraci }) => {
       </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="overlay">
-        <h2>{currentPlayer.jmeno}</h2>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', justifyContent: 'center' }}>
+          <div className="overflow-hidden rounded-circle" style={{ width: '48px', height: '48px', marginRight: '10px' }}>
+            <img
+              src={currentPlayer.photoURL || playerPlaceholder}
+              alt="Player"
+              className="player-photo"
+            />
+          </div>
+          <h2 style={{ margin: 0, fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
+        </div>
         <ul>
           {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => (
             <li key={index}>

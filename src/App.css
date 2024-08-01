@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Reset stylů */
@@ -28,8 +28,12 @@ body {
 
 @media (max-width: 768px) {
 
+  .modal ul li {
+    font-size: 14px !important;
+  }
+
   .icon {
-    margin-right: 10px !important;
+    margin-right: 5px !important;
     margin-left: 5px !important;
   }
 
@@ -690,4 +694,54 @@ td button.cancel-button {
 
 .penalties-notice li::marker {
   content: ''; /* Remove default markers */
+}
+
+.icon {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.upload-icon {
+  color: #007bff;
+  display: flex;
+}
+
+.player-photo {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  margin-right: 10px;
+  display: flex;
+  min-width: 48px;
+  border-radius: 50%;
+
+}
+
+.placeholder-photo {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  font-size: 15px;
+  color: white;
+  margin-right: 10px;
+  min-width: 35px;
+}
+
+.photo-and-name {
+  display: flex;
+  align-items: center;
+}
+
+.amount {
+  white-space: nowrap;
+}
+
+.zaplatil-a-ikona {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }

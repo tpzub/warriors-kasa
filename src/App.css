@@ -38,7 +38,17 @@ body {
     align-items: center;
   }
 
-  .summary-card {
+  .summary-card-red {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .summary-card-green {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .summary-card-yellow {
     width: 100% !important;
     margin-bottom: 20px;
   }
@@ -216,6 +226,18 @@ input:focus, select:focus {
   background-color: #f1f1f1;
 }
 
+.evidence-table td:nth-of-type(4) {
+  background-color: #ffbdbd;
+}
+
+.evidence-table td:nth-of-type(5) {
+  background-color: #abff9a;
+}
+
+.evidence-table td:nth-of-type(6) {
+  background-color: #fffd9c;
+}
+
 .evidence-table-penalties th, .evidence-table-penalties td {
   padding: 5px;
   text-align: left;
@@ -278,6 +300,18 @@ input:focus, select:focus {
   font-size: 16px;
   border-radius: 4px;
   transition: background-color 0.3s;
+}
+
+.add-player-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ED1B26;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  margin-left: 10px;
 }
 
 .cancel-button {
@@ -561,8 +595,24 @@ h2 {
   margin-top: 20px;
 }
 
-.summary-card {
-  background: #f8f9fa;
+.summary-card-red {
+  background: #ffbdbd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+.summary-card-green {
+  background: #abff9a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+.summary-card-yellow {
+  background: #fffd9c;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;

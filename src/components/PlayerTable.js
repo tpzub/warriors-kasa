@@ -130,7 +130,7 @@ const PlayerTable = ({
                     onChange={(e) => setNewHrac(e.target.value)}
                     placeholder="Jméno hráče"
                   />
-                  <button className="add-button" type="submit">Přidat hráče</button>
+                  <button className="add-player-button" type="submit">Přidat hráče</button>
                 </form>
               </td>
             </tr>

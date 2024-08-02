@@ -28,6 +28,30 @@ body {
 
 @media (max-width: 768px) {
 
+  .qr-code {
+    width: 200px !important;
+  }
+
+  .qr-content {
+    width: 100% !important;
+  }
+
+  .qr-text {
+    text-align: center;
+  }
+
+  .kolik-dluzim-container {
+    margin-top: 30px;
+    width: 100% !important;
+  }
+
+  .platba-container {
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: flex-start !important;
+  }
+
   .modal ul li {
     font-size: 14px !important;
   }
@@ -543,6 +567,7 @@ a.logo-link {
 }
 
 .login-container {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -581,7 +606,7 @@ a.logo-link {
 }
 
 h2 {
-  margin-bottom: 20px;
+  margin: 20px;
   font-size: 25px;
 }
 
@@ -736,4 +761,74 @@ td button.cancel-button {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+}
+
+.platba-container {
+  display: flex;
+  justify-content: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  min-height: 50vh;
+}
+
+.qr-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  flex-direction: column;
+}
+
+.qr-code {
+  width: 300px;
+}
+
+.qr-text {
+  margin-top: 20px;
+}
+
+.kolik-dluzim-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  flex-direction: column;
+}
+
+.kolik-dluzim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.debt-notice1 {
+  padding: 20px;
+  border: 2px red solid;
+  background-color: #ffbdbd;
+  border-radius: 10px;
+}
+
+.debt-notice2 {
+  padding: 20px;
+  border: 2px green solid;
+  background-color: #abff9a;
+  border-radius: 10px;
+}
+
+.platba-container select {
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.player-info {
+  display: flex;
+  justify-content: start;
+  justify-items: start;
+  align-items: start;
+  align-content: start;
 }

@@ -1,24 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase/firebaseConfig';
 import logo from '../assets/logo.png';
 
-const Header = ({ isEvidencePage, setIsEvidencePage, user, handleLogout }) => {
+const Header = ({ isEvidencePage, setIsEvidencePage, user, handleLogout, activePage, setActivePage }) => {
   return (
     <header className="header">
       <nav>
         <ul className="nav-list">
           <li className="logo-container">
-            <Link to={user ? "/admin" : "/warriors-kasa"} className="logo-link">
+            <Link to="/warriors-kasa" className="logo-link" onClick={() => setActivePage('evidence')}>
               <img src={logo} alt="Logo" className="logo" />
             </Link>
           </li>
           <div className="nav-buttons">
             <li>
-              <Link to={user ? "/admin" : "/warriors-kasa"} onClick={() => setIsEvidencePage(true)} className={isEvidencePage ? 'active' : ''}>Dluhy</Link>
+              <Link 
+                to="/warriors-kasa" 
+                onClick={() => setActivePage('evidence')}
+                className={activePage === 'evidence' ? 'active' : ''}
+              >
+                Dluhy
+              </Link>
             </li>
             <li>
-              <Link to={user ? "/admin" : "/warriors-kasa"} onClick={() => setIsEvidencePage(false)} className={!isEvidencePage ? 'active' : ''}>Pokuty</Link>
+              <Link 
+                to="/warriors-kasa" 
+                onClick={() => setActivePage('penalties')}
+                className={activePage === 'penalties' ? 'active' : ''}
+              >
+                Pokuty
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/warriors-kasa"
+                onClick={() => setActivePage('payment')}
+                className={activePage === 'payment' ? 'active' : ''}
+              >
+                Zaplatit
+              </Link>
             </li>
           </div>
           {user ? (

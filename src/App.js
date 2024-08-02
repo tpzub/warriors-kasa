@@ -13,7 +13,8 @@ import PenaltyTable from './components/PenaltyTable';
 import Login from './components/Login';
 import PublicView from './components/PublicView';
 import PublicPenalties from './components/PublicPenalties';
-import { collection, getDocs, arrayUnion, increment, doc, updateDoc, addDoc, deleteDoc } from 'firebase/firestore';
+import Platba from './components/Platba';
+import { collection, getDocs, increment, doc, updateDoc, addDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const App = () => {
@@ -35,6 +36,7 @@ const AppContent = () => {
   const [paidAmounts, setPaidAmounts] = useState({});
   const [isEvidencePage, setIsEvidencePage] = useState(true);
   const [editPaidAmountId, setEditPaidAmountId] = useState(null);
+  const [activePage, setActivePage] = useState('evidence'); // Nový stav pro přepínání stránek
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,17 +48,16 @@ const AppContent = () => {
       console.error('Error:', error);
       return;
     }
+    fetchHraci();
+    fetchPokuty();
+  }, [loading, error]);
+
+  useEffect(() => {
     if (user) {
       console.log('User is logged in:', user);
-      fetchHraci();
-      fetchPokuty();
-      navigate('/admin');
-    } else {
-      console.log('User is not logged in.');
-      fetchHraci();
-      fetchPokuty();
+      navigate('/warriors-kasa');
     }
-  }, [user, loading, error, navigate]);
+  }, [user, navigate]);
 
   const fetchHraci = async () => {
     const hraciCollection = await getDocs(collection(firestore, 'hraci'));
@@ -254,51 +255,65 @@ const AppContent = () => {
         setIsEvidencePage={setIsEvidencePage}
         user={user}
         handleLogout={handleLogout}
+        activePage={activePage}
+        setActivePage={setActivePage}
       />
       <Routes>
-        <Route path="/warriors-kasa" element={isEvidencePage ? <PublicView hraci={hraci} /> : <PublicPenalties pokuty={pokuty} />} />
-        <Route path="/admin" element={
-          user ? (
-            isEvidencePage ? (
+        <Route path="/" element={<Navigate to="/warriors-kasa" />} />
+        <Route path="/warriors-kasa" element={
+          <>
+            {user ? (
               <>
-                <h2 className="center-text">Správa dluhů</h2>
-                <PlayerForm hraci={hraci} pokuty={pokuty} addPokuta={addPokuta} />
-                <PlayerTable
-                  hraci={hraci}
-                  editMode={editMode}
-                  editHracId={editHracId}
-                  editHracJmeno={editHracJmeno}
-                  setEditHracId={setEditHracId}
-                  setEditHracJmeno={setEditHracJmeno}
-                  updateHrac={updateHrac}
-                  deleteHrac={deleteHrac}
-                  deletePokuta={deletePokuta}
-                  deletePokutaByIndex={deletePokutaByIndex}
-                  editPaidAmountId={editPaidAmountId}
-                  setEditPaidAmountId={setEditPaidAmountId}
-                  handlePaidAmountChange={handlePaidAmountChange}
-                  handleSavePaidAmount={handleSavePaidAmount}
-                  paidAmounts={paidAmounts}
-                  addHrac={addHrac}
-                  newHrac={newHrac}
-                  setNewHrac={setNewHrac}
-                  handlePhotoUpload={handlePhotoUpload} // Pass the handlePhotoUpload function
-                />
+                {activePage === 'evidence' && (
+                  <>
+                    <h2 className="center-text">Správa dluhů</h2>
+                    <PlayerForm hraci={hraci} pokuty={pokuty} addPokuta={addPokuta} />
+                    <PlayerTable
+                      hraci={hraci}
+                      editMode={editMode}
+                      editHracId={editHracId}
+                      editHracJmeno={editHracJmeno}
+                      setEditHracId={setEditHracId}
+                      setEditHracJmeno={setEditHracJmeno}
+                      updateHrac={updateHrac}
+                      deleteHrac={deleteHrac}
+                      deletePokuta={deletePokuta}
+                      deletePokutaByIndex={deletePokutaByIndex}
+                      editPaidAmountId={editPaidAmountId}
+                      setEditPaidAmountId={setEditPaidAmountId}
+                      handlePaidAmountChange={handlePaidAmountChange}
+                      handleSavePaidAmount={handleSavePaidAmount}
+                      paidAmounts={paidAmounts}
+                      addHrac={addHrac}
+                      newHrac={newHrac}
+                      setNewHrac={setNewHrac}
+                      handlePhotoUpload={handlePhotoUpload}
+                    />
+                  </>
+                )}
+                {activePage === 'penalties' && (
+                  <>
+                    <h2 className="center-text">Správa pokut</h2>
+                    <PenaltyForm addNewPokuta={addNewPokuta} />
+                    <PenaltyTable
+                      pokuty={pokuty}
+                      deletePokuta={deletePokuta}
+                      editPokuta={editPokuta}
+                    />
+                  </>
+                )}
+                {activePage === 'payment' && (
+                  <Platba />
+                )}
               </>
             ) : (
               <>
-                <h2 className="center-text">Správa pokut</h2>
-                <PenaltyForm addNewPokuta={addNewPokuta} />
-                <PenaltyTable
-                  pokuty={pokuty}
-                  deletePokuta={deletePokuta}
-                  editPokuta={editPokuta}
-                />
+                {activePage === 'evidence' && <PublicView hraci={hraci} />}
+                {activePage === 'penalties' && <PublicPenalties pokuty={pokuty} />}
+                {activePage === 'payment' && <Platba />}
               </>
-            )
-          ) : (
-            <Navigate to="/login" />
-          )
+            )}
+          </>
         } />
         <Route path="/login" element={<Login />} />
       </Routes>

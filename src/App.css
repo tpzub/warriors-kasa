@@ -226,10 +226,6 @@ input:focus, select:focus {
   background-color: #f9f9f9;
 }
 
-.evidence-table tr:hover {
-  background-color: #f1f1f1;
-}
-
 .evidence-table td:nth-of-type(4) {
   background-color: #ffbdbd;
 }

@@ -47,6 +47,10 @@ const PlayerTable = ({
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
+const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
+const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
+const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
+
   return (
     <div>
       <div className="table-container">
@@ -174,17 +178,17 @@ const PlayerTable = ({
         <div className="summary-card-red">
           <FaMoneyBillWave className="summary-icon" />
           <p>Celkový dluh všech hráčů:</p>
-          <h3>{totalDebt} Kč</h3>
+          <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
           <FaHandHoldingUsd className="summary-icon" />
           <p>Celkově všichni zaplatili:</p>
-          <h3>{totalPaid} Kč</h3>
+          <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
           <FaCoins className="summary-icon" />
           <p>Ješte zbývá vybrat:</p>
-          <h3>{totalRemaining} Kč</h3>
+          <h3>{formattedTotalRemaining}</h3>
         </div>
       </div>
     </div>

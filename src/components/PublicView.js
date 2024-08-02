@@ -21,6 +21,10 @@ const PublicView = ({ hraci }) => {
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
+const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
+const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
+const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
+
   return (
     <div>
       <h2 className="center-text ">Přehled dluhů</h2>
@@ -56,9 +60,9 @@ const PublicView = ({ hraci }) => {
                     <button onClick={() => openModal(hrac)} className="show-button">Ukázat</button>
                   </span>
                 </td>
-                <td>{hrac.dluhCelkem} Kč</td>
-                <td>{hrac.zaplatil || 0} Kč</td>
-                <td>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</td>
+                <td><span className='amount'>{hrac.dluhCelkem} Kč</span></td>
+                <td><span className='amount'>{hrac.zaplatil || 0} Kč</span></td>
+                <td><span className='amount'>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span></td>
               </tr>
             ))}
           </tbody>
@@ -69,17 +73,17 @@ const PublicView = ({ hraci }) => {
         <div className="summary-card-red">
           <FaMoneyBillWave className="summary-icon" />
           <p>Celkový dluh všech hráčů:</p>
-          <h3>{totalDebt} Kč</h3>
+          <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
           <FaHandHoldingUsd className="summary-icon" />
           <p>Celkově všichni zaplatili:</p>
-          <h3>{totalPaid} Kč</h3>
+          <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
           <FaCoins className="summary-icon" />
           <p>Ješte zbývá vybrat:</p>
-          <h3>{totalRemaining} Kč</h3>
+          <h3>{formattedTotalRemaining}</h3>
         </div>
       </div>
 

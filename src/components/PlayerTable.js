@@ -47,9 +47,9 @@ const PlayerTable = ({
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
-const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
-const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
-const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
 
   return (
     <div>
@@ -152,7 +152,7 @@ const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
         </table>
 
         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="overlay">
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', justifyContent: 'center' }}>
             <div className="overflow-hidden rounded-circle" style={{ width: '48px', height: '48px', marginRight: '10px' }}>
               <img
                 src={currentPlayer.photoURL || playerPlaceholder}

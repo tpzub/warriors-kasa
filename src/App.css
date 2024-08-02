@@ -222,10 +222,6 @@ input:focus, select:focus {
   background-color: #f4f4f4;
 }
 
-.evidence-table tr:nth-of-type(even) {
-  background-color: #f9f9f9;
-}
-
 .evidence-table td:nth-of-type(4) {
   background-color: #ffbdbd;
 }

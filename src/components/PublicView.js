@@ -21,9 +21,9 @@ const PublicView = ({ hraci }) => {
   const totalPaid = hraci.reduce((sum, hrac) => sum + (hrac.zaplatil || 0), 0);
   const totalRemaining = hraci.reduce((sum, hrac) => sum + (hrac.dluhCelkem - (hrac.zaplatil || 0)), 0);
 
-const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
-const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
-const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalDebt = totalDebt.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
+  const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
 
   return (
     <div>

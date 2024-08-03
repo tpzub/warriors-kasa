@@ -32,7 +32,6 @@ const AppContent = () => {
   const [newHrac, setNewHrac] = useState('');
   const [editHracId, setEditHracId] = useState(null);
   const [editHracJmeno, setEditHracJmeno] = useState('');
-  const [editMode, setEditMode] = useState(false);
   const [paidAmounts, setPaidAmounts] = useState({});
   const [isEvidencePage, setIsEvidencePage] = useState(true);
   const [editPaidAmountId, setEditPaidAmountId] = useState(null);
@@ -270,7 +269,6 @@ const AppContent = () => {
                     <PlayerForm hraci={hraci} pokuty={pokuty} addPokuta={addPokuta} />
                     <PlayerTable
                       hraci={hraci}
-                      editMode={editMode}
                       editHracId={editHracId}
                       editHracJmeno={editHracJmeno}
                       setEditHracId={setEditHracId}

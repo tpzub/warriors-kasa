@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
-const Header = ({ isEvidencePage, setIsEvidencePage, user, handleLogout, activePage, setActivePage }) => {
+const Header = ({ user, handleLogout, activePage, setActivePage }) => {
   return (
     <header className="header">
       <nav>

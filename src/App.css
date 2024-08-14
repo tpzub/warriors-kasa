@@ -24,9 +24,17 @@ body {
   .nav-buttons li {
     margin: 0px !important;
   }
+
+  h2 {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 768px) {
+
+  h2 {
+    margin-top: 0px;
+  }
 
   .qr-code {
     width: 200px !important;

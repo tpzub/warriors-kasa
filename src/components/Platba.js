@@ -48,8 +48,8 @@ const Platba = () => {
             />
             {selectedPlayer && (
               <div className="player-info">
-                {selectedPlayer.dluhCelkem > 0 ? (
-                  <div className="debt-notice1">❗ ještě dluží: <strong>{selectedPlayer.dluhCelkem} Kč ❗</strong></div>
+                {selectedPlayer.dluhCelkem - (selectedPlayer.zaplatil || 0) > 0 ? (
+                  <div className="debt-notice1">❗ ještě dluží: <strong>{selectedPlayer.dluhCelkem - (selectedPlayer.zaplatil || 0)} Kč ❗</strong></div>
                 ) : (
                   <div className="debt-notice2">nic nedluží 👍</div>
                 )}

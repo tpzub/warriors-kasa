@@ -10,26 +10,6 @@ body {
   box-sizing: border-box;
 }
 
-@media (max-width: 1024px) {
-  .nav-buttons{
-    flex-direction: column;
-    gap: 10px;
-    flex: none !important;
-  }
-
-  .nav-list li {
-    margin: 0px !important;
-  }
-
-  .nav-buttons li {
-    margin: 0px !important;
-  }
-
-  h2 {
-    margin-top: 20px;
-  }
-}
-
 @media (max-width: 768px) {
 
   h2 {
@@ -144,9 +124,6 @@ body {
     flex-direction: column-reverse !important;
   }
 
-  .logo {
-    width: 120px !important;
-  }
 }
 
 .bold-text {
@@ -372,11 +349,6 @@ input:focus, select:focus {
   color: darkred;
 }
 
-.logo {
-  width: 150px;
-  padding: 0;
-  border: none;
-}
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.75);
@@ -840,4 +812,132 @@ td button.cancel-button {
   justify-items: start;
   align-items: start;
   align-content: start;
+}
+
+/* Přidejte/upravte tyto styly v App.css */
+.header {
+  background-color: black;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.logo-container {
+  flex: 0 0 auto;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.nav-buttons a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  background-color: #404040;
+}
+
+.nav-buttons a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-buttons a.active {
+  background-color: #ff3b3b;
+}
+
+.auth-button {
+  background: none !important;
+  color: #333 !important;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-button .auth-text {
+  display: inline;
+}
+
+.auth-icon {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.3rem;
+  }
+
+  .nav-list {
+    flex-direction: row !important;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    height: 50px!important;
+
+  }
+
+  .nav-buttons {
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    gap: 0.3rem;
+  }
+
+  .nav-buttons a {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .auth-button {
+    padding: 0.3rem 0.6rem;
+  }
+
+  .auth-button .auth-text {
+    display: none;
+  }
+
+  .auth-icon {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}
+
+/* Upravte stávající styly pro logo a jeho container */
+.logo-container {
+  flex: 0 0 auto;
+}
+
+.logo-container a {
+  padding: 0 !important; /* Přepíše původní padding */
+  background: none !important; /* Odstraní červené pozadí */
+  border: none !important; /* Odstraní border */
+}
+
+.logo-container a:hover {
+  background: none !important; /* Odstraní hover efekt */
+}
+
+.logo {
+  height: 120px;
+  width: auto;
+  display: block; /* Zajistí správné zobrazení */
 }

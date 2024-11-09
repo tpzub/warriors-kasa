@@ -7,12 +7,26 @@ const Header = ({ user, handleLogout, activePage, setActivePage }) => {
   return (
     <header className="header">
       <nav>
-        <ul className="nav-list">
-          <li className="logo-container">
-            <Link to="/warriors-kasa" onClick={() => setActivePage('evidence')}>
+        <div className="nav-top">
+          <div className="nav-left">
+            <Link to="/warriors-kasa" onClick={() => setActivePage('evidence')} className="logo-container">
               <img src={logo} alt="Logo" className="logo" />
+              <span className="app-title">WARRIORS KASA</span>
             </Link>
-          </li>
+          </div>
+          <div className="nav-right">
+            {user ? (
+              <button onClick={handleLogout} className="auth-button">
+                <FaUserCog className="auth-icon" />
+              </button>
+            ) : (
+              <Link to="/login" className="auth-button">
+                <FaUserCog className="auth-icon" />
+              </Link>
+            )}
+          </div>
+        </div>
+        <div className="nav-bottom">
           <div className="nav-buttons">
             <Link 
               to="/warriors-kasa" 
@@ -36,18 +50,7 @@ const Header = ({ user, handleLogout, activePage, setActivePage }) => {
               Zaplatit
             </Link>
           </div>
-          {user ? (
-            <button onClick={handleLogout} className="auth-button">
-              <FaUserCog className="auth-icon" />
-              <span className="auth-text">Odhlásit se</span>
-            </button>
-          ) : (
-            <Link to="/login" className="auth-button">
-              <FaUserCog className="auth-icon" />
-              <span className="auth-text">Admin</span>
-            </Link>
-          )}
-        </ul>
+        </div>
       </nav>
     </header>
   );

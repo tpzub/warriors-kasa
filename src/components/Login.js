@@ -29,12 +29,14 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          required
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Heslo"
+          required
         />
         <button type="submit">Přihlásit se</button>
       </form>

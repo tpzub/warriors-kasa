@@ -124,6 +124,56 @@ body {
     flex-direction: column-reverse !important;
   }
 
+  .container {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  /* Upravit velikost písma v tabulkách */
+  .evidence-table,
+  .evidence-table-penalties,
+  .evidence-table th,
+  .evidence-table td,
+  .evidence-table-penalties th,
+  .evidence-table-penalties td {
+    font-size: 13px !important;
+  }
+
+  /* Zabránit zalamování v buňce s hráčem */
+  .photo-and-name {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; /* Můžete upravit podle potřeby */
+  }
+
+  /* Upravit velikost fotky hráče na mobilu */
+  .player-photo {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+    margin-right: 5px;
+  }
+
+  /* Upravit velikost tlačítka "Ukázat" */
+  .show-button {
+    font-size: 13px;
+    padding: 3px 6px;
+  }
+
+  /* Upravit velikost částek */
+  .amount {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* Upravit velikost textu v hlavičce tabulky */
+  thead th {
+    font-size: 13px !important;
+    white-space: nowrap;
+  }
 }
 
 .bold-text {
@@ -218,6 +268,14 @@ input:focus, select:focus {
   padding: 8px;
   text-align: left;
   border: 1px solid #ddd;
+}
+
+.evidence-table th {
+    font-size: 11px !important;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #00141e;
+    font-family: sans-serif;
 }
 
 .evidence-table {
@@ -424,18 +482,20 @@ input:focus, select:focus {
 }
 
 .show-button {
-  background-color: #ccc;
+  background-color: #ED1B26;
+  color: white;
   border: none;
-  color: black;
-  padding: 5px 10px;
-  margin-left: 10px;
-  cursor: pointer;
-  font-size: 12px;
   border-radius: 4px;
+  padding: 5px 10px;
+  min-width: 35px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: background-color 0.2s;
 }
 
 .show-button:hover {
-  background-color: #bbb;
+  background-color: darkred;
 }
 
 .nav-list {
@@ -452,11 +512,26 @@ input:focus, select:focus {
 .nav-buttons {
   display: flex;
   justify-content: center;
-  flex: 2;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.nav-buttons li {
-  margin: 0 15px;
+.nav-buttons a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  background-color: #404040;
+}
+
+.nav-buttons a:hover {
+  background-color: #505050;
+}
+
+.nav-buttons a.active {
+  background-color: #ED1B26;
 }
 
 .nav-list li {
@@ -526,358 +601,21 @@ a.logo-link {
 }
 
 .auth-button {
-  background: #ccc !important;
-  border: none !important;
-  color: black !important;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 8px 40px !important;
-}
-
-.auth-button:hover {
-  background-color: darkgray !important;
-}
-
-.auth-button a {
-  color: gray;
-  text-decoration: underline;
-}
-
-.auth-button a:hover {
-  color: darkgray;
-}
-
-.login-container {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  background-color: #f4f4f4;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  max-width: 400px;
-}
-
-.login-form input,
-.login-form button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid hsl(0, 0%, 80%);
-  border-radius: 4px;
-}
-
-.login-form button {
-  background-color: #ed1b26;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.login-form button:hover {
-  background-color: darkred;
-}
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 25px;
-}
-
-.summary-container {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.summary-card-red {
-  background: #ffbdbd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  width: 30%;
-}
-.summary-card-green {
-  background: #abff9a;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  width: 30%;
-}
-.summary-card-yellow {
-  background: #fffd9c;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  width: 30%;
-}
-
-.summary-card h3 {
-  margin: 10px 0 0;
-  color: #333;
-}
-
-.summary-card p {
-  margin: 0;
-  color: #666;
-}
-
-.summary-icon {
-  font-size: 2em;
-  color: #ed1b26;
-}
-
-.css-b62m3t-container {
-  width: 50%;
-}
-
-.css-hlgwow {
-  font-size: 16px;
-}
-
-.css-13cymwt-control:focus {
-  border-color: #ed1b26 !important;
-}
-
-.css-19bb58m {
-  margin: 0px !important;
-  padding: 0px !important;
-}
-
-td button.save-button {
-  margin: 0 10px;
-}
-
-td button.cancel-button {
-  margin-right: 10px;
-}
-
-.action-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.penalties-notice {
-  font-size: 15px;
-  padding: 10px;
-  background-color: #ffbdbd;
-  margin-top: 10px;
-  border: 1px red solid;
-  border-radius: 10px;
-  list-style-type: none !important; /* Remove default bullet points */
-  padding-left: 5px; /* Adjust padding to move custom markers */
-}
-
-.penalties-notice li {
-  margin-bottom: 5px;
-  position: relative;
-  padding-left: 20px; /* Adjust padding to move custom markers */
-}
-
-.penalties-notice li::before {
-  content: "❗"; /* Emoji used as custom marker */
-  position: absolute;
-  left: 0;
-}
-
-.penalties-notice li::marker {
-  content: ''; /* Remove default markers */
-}
-
-.icon {
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-.upload-icon {
-  color: #007bff;
-  display: flex;
-}
-
-.player-photo {
-  width: 48px;
-  height: 48px;
-  object-fit: cover;
-  margin-right: 10px;
-  display: flex;
-  min-width: 48px;
-  border-radius: 50%;
-
-}
-
-.placeholder-photo {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-color: #ccc;
-  display: inline-block;
-  text-align: center;
-  line-height: 30px;
-  font-size: 15px;
-  color: white;
-  margin-right: 10px;
-  min-width: 35px;
-}
-
-.photo-and-name {
-  display: flex;
-  align-items: center;
-}
-
-.amount {
-  white-space: nowrap;
-}
-
-.zaplatil-a-ikona {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.platba-container {
-  display: flex;
-  justify-content: center;
-  background-color: #f4f4f4;
-  padding: 20px;
-  min-height: 50vh;
-}
-
-.qr-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  flex-direction: column;
-}
-
-.qr-code {
-  width: 300px;
-}
-
-.qr-text {
-  margin-top: 20px;
-}
-
-.kolik-dluzim-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  flex-direction: column;
-}
-
-.kolik-dluzim {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  width: 100%;
-  gap: 10px;
-}
-
-.debt-notice1 {
-  padding: 20px;
-  border: 2px red solid;
-  background-color: #ffbdbd;
-  border-radius: 10px;
-}
-
-.debt-notice2 {
-  padding: 20px;
-  border: 2px green solid;
-  background-color: #abff9a;
-  border-radius: 10px;
-}
-
-.platba-container select {
-  padding: 10px;
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.player-info {
-  display: flex;
-  justify-content: start;
-  justify-items: start;
-  align-items: start;
-  align-content: start;
-}
-
-/* Přidejte/upravte tyto styly v App.css */
-.header {
-  background-color: black;
-  padding: 0.8rem 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.nav-list {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.logo-container {
-  flex: 0 0 auto;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  margin: 0 1rem;
-}
-
-.nav-buttons a {
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  background-color: #404040;
-}
-
-.nav-buttons a:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.nav-buttons a.active {
-  background-color: #ff3b3b;
-}
-
-.auth-button {
   background: none !important;
-  color: #333 !important;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border: none !important;
+  color: white !important;
   cursor: pointer;
-  transition: color 0.2s;
+  padding: 0.5rem !important;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.auth-button .auth-text {
-  display: inline;
 }
 
 .auth-icon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+}
+
+.auth-text {
+  display: none; /* Skrýt text "Admin" */
 }
 
 @media (max-width: 768px) {
@@ -885,34 +623,33 @@ td button.cancel-button {
     padding: 0.3rem;
   }
 
-  .nav-list {
-    flex-direction: row !important;
-    gap: 0.5rem;
+  .nav-top {
+    padding-bottom: 0.3rem;
+  }
+
+  .nav-bottom {
+    padding-top: 0.3rem;
   }
 
   .logo {
-    height: 50px!important;
+    height: 40px !important;
+  }
 
+  .app-title {
+    font-size: 1rem;
+    margin-left: 0.5rem;
   }
 
   .nav-buttons {
-    flex-direction: row;
+    flex-direction: row !important; /* Zajistí horizontální řazení */
     justify-content: center;
-    margin: 0;
     gap: 0.3rem;
   }
 
   .nav-buttons a {
-    padding: 0.3rem 0.6rem;
+    padding: 0.3rem 1rem;
     font-size: 0.9rem;
-  }
-
-  .auth-button {
-    padding: 0.3rem 0.6rem;
-  }
-
-  .auth-button .auth-text {
-    display: none;
+    white-space: nowrap;
   }
 
   .auth-icon {
@@ -921,23 +658,558 @@ td button.cancel-button {
   }
 }
 
-/* Upravte stávající styly pro logo a jeho container */
+/* Přidat na začátek souboru nebo mezi existující styly */
+.header {
+  background-color: black;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-bottom {
+  border-top: 1px solid #333;
+  padding: 1rem 0;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
 .logo-container {
-  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.logo-container a {
-  padding: 0 !important; /* Přepíše původní padding */
-  background: none !important; /* Odstraní červené pozadí */
-  border: none !important; /* Odstraní border */
-}
-
-.logo-container a:hover {
-  background: none !important; /* Odstraní hover efekt */
+.app-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1rem;
 }
 
 .logo {
-  height: 120px;
+  height: 60px;
   width: auto;
-  display: block; /* Zajistí správné zobrazení */
+  display: block;
+}
+
+/* Upravit existující styly pro fotky hráčů */
+.player-photo {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  margin-right: 10px;
+  display: flex;
+  min-width: 35px;
+  border-radius: 50%;
+}
+
+/* Upravit media queries */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.3rem;
+  }
+
+  .nav-top {
+    padding-bottom: 0.3rem;
+  }
+
+  .nav-bottom {
+    padding-top: 0.3rem;
+  }
+
+  .logo {
+    height: 60px !important;
+  }
+
+  .app-title {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  .nav-buttons {
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 0.3rem;
+  }
+
+  .nav-buttons a {
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .auth-icon {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}
+
+/* Upravit styly pro dolní navigaci */
+.nav-bottom {
+  border-top: 1px solid #333;
+  padding: 1rem 0;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-buttons a {
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  background-color: #404040;
+  text-transform: uppercase;
+  flex: 1;
+  text-align: center;
+  margin: 0 0.5rem;
+}
+
+/* Upravit mobilní verzi */
+@media (max-width: 768px) {
+  .nav-bottom {
+    padding: 0.5rem 0;
+  }
+
+  .nav-buttons {
+    padding: 0 0.5rem;
+  }
+
+  .nav-buttons a {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
+    margin: 0 0.2rem;
+  }
+}
+
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.summary-card-red,
+.summary-card-green,
+.summary-card-yellow {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card-red {
+  border: 2px solid #ffbdbd;
+}
+
+.summary-card-green {
+  border: 2px solid #abff9a;
+}
+
+.summary-card-yellow {
+  border: 2px solid #fffd9c;
+}
+
+.summary-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #ED1B26;
+}
+
+.summary-card-red p,
+.summary-card-green p,
+.summary-card-yellow p {
+  margin: 10px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.summary-card-red h3,
+.summary-card-green h3,
+.summary-card-yellow h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .summary-container {
+    flex-direction: row;
+    padding: 10px;
+    gap: 5px;
+  }
+
+  .summary-card-red,
+  .summary-card-green,
+  .summary-card-yellow {
+    margin-bottom: 0;
+    padding: 10px;
+  }
+
+  .summary-icon {
+    font-size: 1.2em;
+  }
+
+  .summary-card-red p,
+  .summary-card-green p,
+  .summary-card-yellow p {
+    font-size: 11px;
+    margin: 5px 0;
+  }
+
+  .summary-card-red h3,
+  .summary-card-green h3,
+  .summary-card-yellow h3 {
+    font-size: 14px;
+  }
+}
+
+/* Upravit media queries pro mobilní zařízení */
+@media (max-width: 768px) {
+  .summary-container {
+    flex-direction: column !important; /* Změna na sloupec */
+    padding: 10px;
+    gap: 10px; /* Mezera mezi kartami */
+  }
+
+  .summary-card-red,
+  .summary-card-green,
+  .summary-card-yellow {
+    width: 100%; /* Plná šířka */
+    margin-bottom: 10px; /* Mezera pod kartou */
+    padding: 15px;
+  }
+
+  .summary-icon {
+    font-size: 1.5em;
+  }
+
+  .summary-card-red p,
+  .summary-card-green p,
+  .summary-card-yellow p {
+    font-size: 12px;
+    margin: 5px 0;
+  }
+
+  .summary-card-red h3,
+  .summary-card-green h3,
+  .summary-card-yellow h3 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-container {
+    flex-direction: column !important;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .summary-card-red,
+  .summary-card-green,
+  .summary-card-yellow {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .summary-card-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .summary-icon {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  .summary-card-red p,
+  .summary-card-green p,
+  .summary-card-yellow p {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .summary-card-red h3,
+  .summary-card-green h3,
+  .summary-card-yellow h3 {
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+.penalties-notice {
+  font-size: 14px;
+  padding: 15px;
+  background-color: #fff3f3;
+  margin-top: 15px;
+  border: 1px solid #ffbdbd;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.penalties-notice ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.penalties-notice li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 8px;
+}
+
+.penalties-notice li:last-child {
+  margin-bottom: 0;
+}
+
+.penalties-notice li:before {
+  content: "❗";
+  position: absolute;
+  left: 0;
+  color: #ED1B26;
+}
+
+@media (max-width: 768px) {
+  .penalties-notice {
+    font-size: 13px;
+    padding: 12px;
+    margin: 10px;
+  }
+
+  .penalties-notice li {
+    padding-left: 20px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Upravit styly pro platební sekci */
+.platba-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 30px;
+  background-color: #f4f4f4;
+}
+
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 400px;
+}
+
+.qr-code {
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.qr-text {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.kolik-dluzim-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.kolik-dluzim {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.kolik-dluzim h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Upravit Select komponentu */
+.css-b62m3t-container {
+  width: 250px !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+
+.player-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.debt-notice1,
+.debt-notice2 {
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #fff3f3;
+  border: 2px solid #ffbdbd;
+}
+
+.debt-notice2 {
+  background-color: #f3fff3;
+  border: 2px solid #abff9a;
+}
+
+@media (max-width: 768px) {
+  .platba-container {
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .qr-content {
+    max-width: 300px;
+  }
+
+  .qr-code {
+    width: 180px;
+  }
+
+  .qr-text {
+    font-size: 14px;
+  }
+
+  .css-b62m3t-container {
+    width: 200px !important;
+  }
+
+  .kolik-dluzim h4 {
+    font-size: 15px;
+  }
+
+  .debt-notice1,
+  .debt-notice2 {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Přidat nové styly pro Select komponentu */
+.css-26l3qy-menu {
+  position: absolute !important;
+  z-index: 999 !important;
+}
+
+/* Upravit pozici dropdown menu */
+.css-1nmdiq5-menu {
+  position: absolute !important;
+  width: 100% !important;
+  z-index: 999 !important;
+}
+
+/* Upravit styly pro přihlašovací stránku */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px); /* Odečteme výšku headeru */
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.login-container h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.login-form {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.login-form input:focus {
+  border-color: #ED1B26;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(237, 27, 38, 0.1);
+}
+
+.login-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ED1B26;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-form button:hover {
+  background-color: darkred;
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-form {
+    padding: 20px;
+  }
+
+  .login-container h2 {
+    font-size: 20px;
+  }
+
+  .login-form input,
+  .login-form button {
+    padding: 10px;
+    font-size: 15px;
+  }
 }

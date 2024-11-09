@@ -32,7 +32,6 @@ const Platba = () => {
 
   return (
     <>
-      <h2 className='center-text'>Zaplatit pokuty</h2>
       <div className="platba-container">
         <div className="qr-content">
           <img src={qrCode} alt="QR kód" className="qr-code" />
@@ -45,6 +44,7 @@ const Platba = () => {
               options={playerOptions}
               onChange={handlePlayerChange}
               placeholder="Vyberte hráče"
+              menuPlacement="top"
             />
             {selectedPlayer && (
               <div className="player-info">

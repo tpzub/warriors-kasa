@@ -27,7 +27,6 @@ const PublicView = ({ hraci }) => {
 
   return (
     <div>
-      <h2 className="center-text ">Přehled dluhů</h2>
       <div className="table-container">
         <table className="evidence-table">
           <thead>
@@ -55,10 +54,9 @@ const PublicView = ({ hraci }) => {
                   </span>
                 </td>
                 <td>
-                  <span onClick={() => openModal(hrac)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                  <button onClick={() => openModal(hrac)} className="show-button">
                     {hrac.pokuty.length}
-                    <button onClick={() => openModal(hrac)} className="show-button">Ukázat</button>
-                  </span>
+                  </button>
                 </td>
                 <td><span className='amount'>{hrac.dluhCelkem} Kč</span></td>
                 <td><span className='amount'>{hrac.zaplatil || 0} Kč</span></td>
@@ -71,18 +69,24 @@ const PublicView = ({ hraci }) => {
 
       <div className="summary-container">
         <div className="summary-card-red">
-          <FaMoneyBillWave className="summary-icon" />
-          <p>Celkový dluh všech hráčů:</p>
+          <div className="summary-card-left">
+            <FaMoneyBillWave className="summary-icon" />
+            <p>Celkový dluh všech hráčů</p>
+          </div>
           <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
-          <FaHandHoldingUsd className="summary-icon" />
-          <p>Celkově všichni zaplatili:</p>
+          <div className="summary-card-left">
+            <FaHandHoldingUsd className="summary-icon" />
+            <p>Celkově všichni zaplatili</p>
+          </div>
           <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
-          <FaCoins className="summary-icon" />
-          <p>Ješte zbývá vybrat:</p>
+          <div className="summary-card-left">
+            <FaCoins className="summary-icon" />
+            <p>Ješte zbývá vybrat</p>
+          </div>
           <h3>{formattedTotalRemaining}</h3>
         </div>
       </div>

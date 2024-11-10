@@ -92,7 +92,7 @@ const PublicView = ({ hraci }) => {
       </div>
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="overlay">
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', justifyContent: 'center' }}>
           <div className="overflow-hidden rounded-circle" style={{ width: '48px', height: '48px', marginRight: '10px' }}>
             <img
               src={currentPlayer.photoURL || playerPlaceholder}
@@ -100,7 +100,7 @@ const PublicView = ({ hraci }) => {
               className="player-photo"
             />
           </div>
-          <h2 style={{ margin: 0, fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
+          <h2 style={{ marginLeft: '10px', fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
         </div>
         <ul>
           {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => (

@@ -1,6 +1,10 @@
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
+  background-color: #f4f4f4;
+  background-image: url('/src/assets/logo-bg.png'); /* Cesta k vašemu logu */
+  background-repeat: repeat; /* Opakování ve všech směrech */
+  background-size: auto;/* Ponechá původní velikost loga */
 }
 
 /* Reset stylů */
@@ -10,11 +14,11 @@ body {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
+h2 {
+  margin: 10px 0;
+}
 
-  h2 {
-    margin-top: 0px;
-  }
+@media (max-width: 768px) {
 
   .qr-code {
     width: 200px !important;
@@ -52,6 +56,7 @@ body {
   .summary-container {
     flex-direction: column;
     align-items: center;
+    background-color: black;
   }
 
   .summary-card-red {
@@ -80,9 +85,8 @@ body {
   }
 
   .form-container select, .form-container input {
-    width: 100% !important;
+    width: 80% !important;
     font-size: 16px !important;
-    padding: 10px 8px !important;
   }
 
   .login-form input, .login-form button, .login-form{
@@ -110,7 +114,7 @@ body {
   }
 
   .css-b62m3t-container, .form-container button {
-    width: 100% !important;
+    width: 80% !important;
   }
 
   .nav-list li {
@@ -136,7 +140,7 @@ body {
   .evidence-table td,
   .evidence-table-penalties th,
   .evidence-table-penalties td {
-    font-size: 13px !important;
+    font-size: 13px;
   }
 
   /* Zabránit zalamování v buňce s hráčem */
@@ -146,7 +150,8 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 150px; /* Můžete upravit podle potřeby */
+    max-width: 150px;
+    font-weight: 500; /* Můžete upravit podle potřeby */
   }
 
   /* Upravit velikost fotky hráče na mobilu */
@@ -181,7 +186,6 @@ body {
 }
 
 .container {
-  padding: 20px;
   max-width: 1140px;
   margin: 0 auto;
   background-color: white;
@@ -208,6 +212,10 @@ body {
   font-size: 16px;
 }
 
+.form-container input {
+  padding: 15px;
+}
+
 .form-container button {
   width: 50%;
   padding: 10px;
@@ -215,6 +223,7 @@ body {
 
 td form{
   text-align: center;
+  padding: 10px;
 }
 
 input, select {
@@ -265,13 +274,12 @@ input:focus, select:focus {
 }
 
 .evidence-table th, .evidence-table td {
-  padding: 8px;
+  padding: 4px;
   text-align: left;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .evidence-table th {
-    font-size: 11px !important;
     font-weight: normal;
     text-transform: uppercase;
     color: #00141e;
@@ -291,15 +299,24 @@ input:focus, select:focus {
 }
 
 .evidence-table td:nth-of-type(4) {
-  background-color: #ffbdbd;
+  background-color: #ffe5e5;
+  font-weight: 500;
+  border-left: 2px solid #ffbdbd;
+  border-right: 2px solid #ffbdbd;
 }
 
 .evidence-table td:nth-of-type(5) {
-  background-color: #abff9a;
+  background-color: #e5ffe5;
+  font-weight: 500;
+  border-left: 2px solid #abff9a;
+  border-right: 2px solid #abff9a;
 }
 
 .evidence-table td:nth-of-type(6) {
-  background-color: #fffd9c;
+  background-color: #fffde5;
+  font-weight: 500;
+  border-left: 2px solid #fffd9c;
+  border-right: 2px solid #fffd9c;
 }
 
 .evidence-table-penalties th, .evidence-table-penalties td {
@@ -343,8 +360,13 @@ input:focus, select:focus {
 }
 
 .icon {
-  margin-left: 10px;
+  margin: 5px;
+  font-size: 16px;
   cursor: pointer;
+}
+
+svg.icon.upload-icon {
+  color: royalblue;
 }
 
 .edit-icon {
@@ -364,6 +386,7 @@ input:focus, select:focus {
   font-size: 16px;
   border-radius: 4px;
   transition: background-color 0.3s;
+  font-weight: 600;
 }
 
 .add-player-button {
@@ -376,6 +399,7 @@ input:focus, select:focus {
   border-radius: 4px;
   transition: background-color 0.3s;
   margin-left: 10px;
+  font-weight: 600;
 }
 
 .cancel-button {
@@ -489,9 +513,9 @@ input:focus, select:focus {
   padding: 5px 10px;
   min-width: 35px;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 12px;
   transition: background-color 0.2s;
+  font-family: "Fugaz one";
 }
 
 .show-button:hover {
@@ -515,6 +539,7 @@ input:focus, select:focus {
   gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  font-family: "Fugaz one"
 }
 
 .nav-buttons a {
@@ -636,7 +661,7 @@ a.logo-link {
   }
 
   .app-title {
-    font-size: 1rem;
+    font-size: 1.3rem !important;
     margin-left: 0.5rem;
   }
 
@@ -692,13 +717,16 @@ a.logo-link {
 
 .app-title {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-left: 1rem;
+  font-family: "Fugaz One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .logo {
-  height: 60px;
+  height: 120px;
   width: auto;
   display: block;
 }
@@ -730,11 +758,6 @@ a.logo-link {
 
   .logo {
     height: 60px !important;
-  }
-
-  .app-title {
-    font-size: 1rem;
-    margin-left: 0.5rem;
   }
 
   .nav-buttons {
@@ -802,16 +825,19 @@ a.logo-link {
 .summary-container {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   padding: 10px;
-  margin-top: 20px;
+  gap: 10px;
+}
+
+input[type="number"] {
+  width: 100%;
 }
 
 .summary-card-red,
 .summary-card-green,
 .summary-card-yellow {
   flex: 1;
-  background: white;
+  background: black;
   border-radius: 8px;
   padding: 15px;
   text-align: center;
@@ -819,21 +845,32 @@ a.logo-link {
 }
 
 .summary-card-red {
-  border: 2px solid #ffbdbd;
+  border: 2px solid #ED1B26;
 }
 
 .summary-card-green {
-  border: 2px solid #abff9a;
+  border: 2px solid #1fad02;
 }
 
 .summary-card-yellow {
-  border: 2px solid #fffd9c;
+  border: 2px solid #eec201;
 }
 
 .summary-icon {
   font-size: 2em;
   margin-bottom: 10px;
+}
+
+.summary-card-green .summary-icon {
+  color: #1fad02;
+}
+
+.summary-card-red .summary-icon {
   color: #ED1B26;
+}
+
+.summary-card-yellow .summary-icon {
+  color: #eec201;
 }
 
 .summary-card-red p,
@@ -841,7 +878,7 @@ a.logo-link {
 .summary-card-yellow p {
   margin: 10px 0;
   font-size: 13px;
-  color: #666;
+  color: white;
 }
 
 .summary-card-red h3,
@@ -849,80 +886,14 @@ a.logo-link {
 .summary-card-yellow h3 {
   margin: 0;
   font-size: 20px;
-  color: #333;
-}
-
-@media (max-width: 768px) {
-  .summary-container {
-    flex-direction: row;
-    padding: 10px;
-    gap: 5px;
-  }
-
-  .summary-card-red,
-  .summary-card-green,
-  .summary-card-yellow {
-    margin-bottom: 0;
-    padding: 10px;
-  }
-
-  .summary-icon {
-    font-size: 1.2em;
-  }
-
-  .summary-card-red p,
-  .summary-card-green p,
-  .summary-card-yellow p {
-    font-size: 11px;
-    margin: 5px 0;
-  }
-
-  .summary-card-red h3,
-  .summary-card-green h3,
-  .summary-card-yellow h3 {
-    font-size: 14px;
-  }
-}
-
-/* Upravit media queries pro mobilní zařízení */
-@media (max-width: 768px) {
-  .summary-container {
-    flex-direction: column !important; /* Změna na sloupec */
-    padding: 10px;
-    gap: 10px; /* Mezera mezi kartami */
-  }
-
-  .summary-card-red,
-  .summary-card-green,
-  .summary-card-yellow {
-    width: 100%; /* Plná šířka */
-    margin-bottom: 10px; /* Mezera pod kartou */
-    padding: 15px;
-  }
-
-  .summary-icon {
-    font-size: 1.5em;
-  }
-
-  .summary-card-red p,
-  .summary-card-green p,
-  .summary-card-yellow p {
-    font-size: 12px;
-    margin: 5px 0;
-  }
-
-  .summary-card-red h3,
-  .summary-card-green h3,
-  .summary-card-yellow h3 {
-    font-size: 16px;
-  }
+  color: white;
 }
 
 @media (max-width: 768px) {
   .summary-container {
     flex-direction: column !important;
     padding: 10px;
-    gap: 10px;
+    gap: 0px;
   }
 
   .summary-card-red,
@@ -934,6 +905,10 @@ a.logo-link {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .summary-card-red {
+    margin-top: 10px;
   }
 
   .summary-card-left {
@@ -950,7 +925,6 @@ a.logo-link {
   .summary-card-red p,
   .summary-card-green p,
   .summary-card-yellow p {
-    font-size: 12px;
     margin: 0;
   }
 
@@ -967,7 +941,6 @@ a.logo-link {
   font-size: 14px;
   padding: 15px;
   background-color: #fff3f3;
-  margin-top: 15px;
   border: 1px solid #ffbdbd;
   border-radius: 8px;
   font-weight: bold;
@@ -999,8 +972,6 @@ a.logo-link {
 @media (max-width: 768px) {
   .penalties-notice {
     font-size: 13px;
-    padding: 12px;
-    margin: 10px;
   }
 
   .penalties-notice li {
@@ -1017,6 +988,7 @@ a.logo-link {
   padding: 20px;
   gap: 30px;
   background-color: #f4f4f4;
+  height: 600px;
 }
 
 .qr-content {
@@ -1063,9 +1035,8 @@ a.logo-link {
 
 /* Upravit Select komponentu */
 .css-b62m3t-container {
-  width: 250px !important;
   position: relative !important;
-  z-index: 3 !important;
+  width: 50%;
 }
 
 .player-info {
@@ -1106,10 +1077,6 @@ a.logo-link {
 
   .qr-text {
     font-size: 14px;
-  }
-
-  .css-b62m3t-container {
-    width: 200px !important;
   }
 
   .kolik-dluzim h4 {
@@ -1211,5 +1178,154 @@ a.logo-link {
   .login-form button {
     padding: 10px;
     font-size: 15px;
+  }
+}
+
+/* Přidat styly pro hlavičky těchto sloupců */
+.evidence-table th:nth-of-type(4) {
+  background-color: #ffbdbd;
+  font-weight: bold;
+  color: #800000;
+}
+
+.evidence-table th:nth-of-type(5) {
+  background-color: #abff9a;
+  font-weight: bold;
+  color: #004d00;
+}
+
+.evidence-table th:nth-of-type(6) {
+  background-color: #fffd9c;
+  font-weight: bold;
+  color: #666600;
+}
+
+.evidence-table td {
+  text-align: center;  /* Všechny buňky budou zarovnané na střed */
+  padding: 4px;
+}
+
+.evidence-table td:nth-child(2) {  /* Sloupec se jmény hráčů */
+  text-align: left;
+}
+
+.evidence-table th {
+  text-align: center;  /* Hlavičky také zarovnáme na střed */
+  font-size: 13px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #00141e;
+  font-family: sans-serif;
+}
+
+.evidence-table th:nth-child(2) {  /* Hlavička pro jména hráčů */
+  text-align: left;
+}
+
+/* Pro zachování zarovnání i v mobilní verzi */
+@media (max-width: 768px) {
+  .evidence-table td,
+  .evidence-table th {
+    text-align: center;
+  }
+
+  .evidence-table td:nth-child(2),
+  .evidence-table th:nth-child(2) {
+    text-align: left;
+  }
+
+  .evidence-table th {
+    font-size: 11px!important;
+  }
+}
+
+/* Zabránit zalamování v buňce s hráčem pro všechny velikosti obrazovky */
+.photo-and-name {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+/* Základní styly pro fotku hráče */
+.player-photo {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  /* Upravit velikost fotky hráče na mobilu */
+  .player-photo {
+    min-width: 25px;
+    margin-right: 5px;
+  }
+
+  /* Upravit maximální šířku pro mobilní zařízení */
+  .photo-and-name {
+    max-width: 150px;
+  }
+}
+
+/* Upravit styly pro fotku v modálním okně */
+.modal .player-photo {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  /* Zachovat větší velikost fotky i na mobilu v modálním okně */
+  .modal .player-photo {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    margin-right: 10px;
+  }
+
+  /* Původní styly pro fotky v tabulce zůstávají nezměněné */
+  .table-container .player-photo {
+    width: 30px;
+    height: 30px;
+    min-width: 25px;
+    margin-right: 5px;
+  }
+}
+
+/* Přidat nové styly pro zarovnání v sloupci Zaplatil */
+.zaplatil-a-ikona {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 8px;
+}
+
+.action-buttons {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Upravit stávající styl pro částky */
+.amount {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Upravit styl pro mobilní zařízení */
+@media (max-width: 768px) {
+  .zaplatil-a-ikona {
+    gap: 4px;
+  }
+  
+  .action-buttons .icon {
+    font-size: 14px;
   }
 }

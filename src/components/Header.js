@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { FaUserCog } from 'react-icons/fa';
+import { FaUserCog, FaSignOutAlt } from 'react-icons/fa';
 
 const Header = ({ user, handleLogout, activePage, setActivePage }) => {
   return (
@@ -17,7 +17,7 @@ const Header = ({ user, handleLogout, activePage, setActivePage }) => {
           <div className="nav-right">
             {user ? (
               <button onClick={handleLogout} className="auth-button">
-                <FaUserCog className="auth-icon" />
+                <FaSignOutAlt className="auth-icon" />
               </button>
             ) : (
               <Link to="/login" className="auth-button">

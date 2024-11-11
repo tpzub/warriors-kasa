@@ -70,21 +70,21 @@ const PublicView = ({ hraci }) => {
       <div className="summary-container">
         <div className="summary-card-red">
           <div className="summary-card-left">
-            <FaMoneyBillWave className="summary-icon" />
+            <FaCoins className="summary-icon" />
             <p>Celkový dluh všech hráčů</p>
           </div>
           <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
           <div className="summary-card-left">
-            <FaHandHoldingUsd className="summary-icon" />
+            <FaMoneyBillWave className="summary-icon" />
             <p>Celkově všichni zaplatili</p>
           </div>
           <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
           <div className="summary-card-left">
-            <FaCoins className="summary-icon" />
+            <FaHandHoldingUsd className="summary-icon" />
             <p>Ješte zbývá vybrat</p>
           </div>
           <h3>{formattedTotalRemaining}</h3>

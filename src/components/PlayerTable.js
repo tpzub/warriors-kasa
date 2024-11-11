@@ -175,17 +175,17 @@ const PlayerTable = ({
 
       <div className="summary-container">
         <div className="summary-card-red">
-          <FaMoneyBillWave className="summary-icon" />
+          <FaCoins className="summary-icon" />
           <p>Celkový dluh všech hráčů:</p>
           <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
-          <FaHandHoldingUsd className="summary-icon" />
+          <FaMoneyBillWave className="summary-icon" />
           <p>Celkově všichni zaplatili:</p>
           <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
-          <FaCoins className="summary-icon" />
+          <FaHandHoldingUsd className="summary-icon" />
           <p>Ješte zbývá vybrat:</p>
           <h3>{formattedTotalRemaining}</h3>
         </div>

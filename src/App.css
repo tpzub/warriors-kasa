@@ -827,6 +827,7 @@ a.logo-link {
   justify-content: space-between;
   padding: 10px;
   gap: 10px;
+  background-color: black;
 }
 
 input[type="number"] {
@@ -1327,5 +1328,333 @@ input[type="number"] {
   
   .action-buttons .icon {
     font-size: 14px;
+  }
+}
+
+/* TOP 3 Debtors */
+.top-debtors {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.top-debtors h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 20px;
+}
+
+.top-debtors-list {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.top-debtor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  min-width: 150px;
+  position: relative;
+}
+
+.top-1 {
+  background-color: #ffd700;
+  order: 2;
+  transform: scale(1.1);
+}
+
+.top-2 {
+  background-color: #c0c0c0;
+  order: 1;
+}
+
+.top-3 {
+  background-color: #cd7f32;
+  order: 3;
+}
+
+.debtor-photo-container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.top-debtor-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+.debtor-crown {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 20px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23333" d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.3 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.debtor-info {
+  text-align: center;
+}
+
+.debtor-name {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.debtor-amount {
+  display: block;
+  font-weight: bold;
+  color: #ED1B26;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .top-debtors {
+    padding: 15px;
+    margin: 10px 0;
+  }
+
+  .top-debtors h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .top-debtors-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .top-debtor-card {
+    min-width: 100%;
+    padding: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: none !important; /* Zrušíme scale efekt na mobilu */
+    order: 0 !important; /* Zrušíme změnu pořadí na mobilu */
+  }
+
+  .top-1, .top-2, .top-3 {
+    position: relative;
+  }
+
+  .top-1::before, .top-2::before, .top-3::before {
+    content: "1";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .top-1::before {
+    background-color: #ffd700; /* Zlatá */
+    border: 2px solid #cc9900;
+  }
+
+  .top-2::before {
+    content: "2";
+    background-color: #c0c0c0; /* Stříbrná */
+    border: 2px solid #999999;
+  }
+
+  .top-3::before {
+    content: "3";
+    background-color: #cd7f32; /* Bronzová */
+    border: 2px solid #a65d28;
+  }
+
+  .debtor-photo-container {
+    margin-left: 45px; /* Zvětšit prostor pro medaili */
+  }
+
+  .top-debtor-photo {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+
+  .debtor-crown {
+    display: none; /* Skryjeme korunku na mobilu */
+  }
+
+  .debtor-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+
+  .debtor-name {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .debtor-amount {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+/* Styly pro nadpis TOP 3 */
+.top-debtors h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: #ED1B26;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 8px;
+  font-family: 'Fugaz One', sans-serif;
+  font-size: 20px;
+  display: inline-block; /* Aby se přizpůsobil šířkou obsahu */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Upravené styly pro korunky podle umístění */
+.top-1 .debtor-crown {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23FFD700" d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.3 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>');
+}
+
+.top-2 .debtor-crown {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23C0C0C0" d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.3 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>');
+}
+
+.top-3 .debtor-crown {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23CD7F32" d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.3 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/></svg>');
+}
+
+/* Upravené styly pro částku dluhu */
+.debtor-amount {
+  display: inline-block;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  background-color: #ED1B26;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .top-debtors {
+    padding: 15px;
+    margin: 10px 0;
+  }
+
+  .top-debtors h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  /* ... existující mobilní styly ... */
+
+  .debtor-crown {
+    display: block !important; /* Zobrazit korunky na mobilu */
+    top: -12px;
+    width: 24px;
+    height: 16px;
+  }
+
+  .debtor-amount {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  /* Upravit pozici korunky pro mobilní zobrazení */
+  .debtor-photo-container {
+    position: relative;
+    margin: 0;
+    margin-left: 35px;
+  }
+
+  .top-debtor-photo {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+}
+
+/* TOP 3 Debtors - základní styly */
+.top-1::before, .top-2::before, .top-3::before {
+  content: "1";
+  position: absolute;
+  left: 50%;
+  top: -12px; /* Pozice nad fotkou */
+  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 2; /* Aby byla medaile nad korunkou */
+}
+
+.top-1::before {
+  background-color: #ffd700; /* Zlatá */
+  border: 2px solid #cc9900;
+}
+
+.top-2::before {
+  content: "2";
+  background-color: #c0c0c0; /* Stříbrná */
+  border: 2px solid #999999;
+}
+
+.top-3::before {
+  content: "3";
+  background-color: #cd7f32; /* Bronzová */
+  border: 2px solid #a65d28;
+}
+
+/* Upravit pozici korunky */
+.debtor-crown {
+  top: -5px; /* Posunout korunku níž, aby nepřekrývala medaili */
+}
+
+/* Media query pro mobilní zařízení */
+@media (max-width: 768px) {
+  .top-1::before, .top-2::before, .top-3::before {
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .debtor-photo-container {
+    margin-left: 45px;
+  }
+
+  .debtor-crown {
+    top: -12px; /* Vrátit původní pozici pro mobilní zobrazení */
   }
 }

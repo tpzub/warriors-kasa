@@ -25,6 +25,13 @@ const PublicView = ({ hraci }) => {
   const formattedTotalPaid = totalPaid.toLocaleString('cs-CZ') + ' Kč';
   const formattedTotalRemaining = totalRemaining.toLocaleString('cs-CZ') + ' Kč';
 
+  const getTopDebtors = () => {
+    return [...hraci]
+      .sort((a, b) => (b.dluhCelkem - (b.zaplatil || 0)) - (a.dluhCelkem - (a.zaplatil || 0)))
+      .slice(0, 3)
+      .filter(hrac => (hrac.dluhCelkem - (hrac.zaplatil || 0)) > 0);
+  };
+
   return (
     <div>
       <div className="table-container">
@@ -65,6 +72,28 @@ const PublicView = ({ hraci }) => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="top-debtors">
+        <h3>TOP 3 DLUŽNÍCI 😠</h3>
+        <div className="top-debtors-list">
+          {getTopDebtors().map((hrac, index) => (
+            <div key={hrac.id} className={`top-debtor-card top-${index + 1}`}>
+              <div className="debtor-photo-container">
+                <img 
+                  src={hrac.photoURL || playerPlaceholder} 
+                  alt={hrac.jmeno} 
+                  className="top-debtor-photo" 
+                />
+                <div className="debtor-crown"></div>
+              </div>
+              <div className="debtor-info">
+                <span className="debtor-name">{hrac.jmeno}</span>
+                <span className="debtor-amount">{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="summary-container">

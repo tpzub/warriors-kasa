@@ -17,10 +17,12 @@ const PlayerTable = ({
   handlePaidAmountChange,
   handleSavePaidAmount,
   paidAmounts,
+  setPaidAmounts,
   addHrac,
   newHrac,
   setNewHrac,
-  handlePhotoUpload
+  handlePhotoUpload,
+  handleEditPaidAmount
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState({});
@@ -56,6 +58,13 @@ const PlayerTable = ({
       .sort((a, b) => (b.dluhCelkem - (b.zaplatil || 0)) - (a.dluhCelkem - (a.zaplatil || 0)))
       .slice(0, 3)
       .filter(hrac => (hrac.dluhCelkem - (hrac.zaplatil || 0)) > 0);
+  };
+
+  const getTopSponsors = () => {
+    return [...hraci]
+      .sort((a, b) => b.dluhCelkem - a.dluhCelkem)
+      .slice(0, 3)
+      .filter(hrac => hrac.dluhCelkem > 0);
   };
 
   return (
@@ -122,17 +131,20 @@ const PlayerTable = ({
                         type="number"
                         value={paidAmounts[hrac.id] || ''}
                         onChange={(e) => handlePaidAmountChange(e, hrac.id)}
-                        placeholder="Zaplacená částka"
+                        placeholder="Zadejte částku"
                       />
-                      <button className="save-button" type="submit">Uložit</button>
-                      <button className="cancel-button" type="button" onClick={() => setEditPaidAmountId(null)}>Zpět</button>
+                      <button className="save-button" type="submit">Přidat</button>
+                      <button className="cancel-button" type="button" onClick={() => {
+                        setEditPaidAmountId(null);
+                        setPaidAmounts({ ...paidAmounts, [hrac.id]: '' }); // Reset hodnoty při zrušení
+                      }}>Zpět</button>
                     </form>
                   ) : (
                     <>
                       <span className='zaplatil-a-ikona'>
                         <span className='amount'>{hrac.zaplatil || 0} Kč</span>
                         <span className="action-buttons">
-                          <FaEdit className="icon edit-icon" onClick={() => setEditPaidAmountId(hrac.id)} />
+                          <FaEdit className="icon edit-icon" onClick={() => handleEditPaidAmount(hrac.id)} />
                         </span>
                       </span>
                     </>
@@ -196,6 +208,28 @@ const PlayerTable = ({
               <div className="debtor-info">
                 <span className="debtor-name">{hrac.jmeno}</span>
                 <span className="debtor-amount">{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="top-debtors">
+      <h3 className="sponsors-heading">TOP 3 SPONZOŘI 💸</h3>
+        <div className="top-debtors-list">
+          {getTopSponsors().map((hrac, index) => (
+            <div key={hrac.id} className={`top-debtor-card top-${index + 1}`}>
+              <div className="debtor-photo-container">
+                <img 
+                  src={hrac.photoURL || playerPlaceholder} 
+                  alt={hrac.jmeno} 
+                  className="top-debtor-photo" 
+                />
+                <div className="debtor-crown"></div>
+              </div>
+              <div className="debtor-info">
+                <span className="debtor-name">{hrac.jmeno}</span>
+                <span className="debtor-amount">{hrac.dluhCelkem} Kč</span>
               </div>
             </div>
           ))}

@@ -32,6 +32,13 @@ const PublicView = ({ hraci }) => {
       .filter(hrac => (hrac.dluhCelkem - (hrac.zaplatil || 0)) > 0);
   };
 
+  const getTopSponsors = () => {
+    return [...hraci]
+      .sort((a, b) => b.dluhCelkem - a.dluhCelkem)
+      .slice(0, 3)
+      .filter(hrac => hrac.dluhCelkem > 0);
+  };
+
   return (
     <div>
       <div className="table-container">
@@ -90,6 +97,28 @@ const PublicView = ({ hraci }) => {
               <div className="debtor-info">
                 <span className="debtor-name">{hrac.jmeno}</span>
                 <span className="debtor-amount">{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="top-debtors">
+      <h3 className="sponsors-heading">TOP 3 SPONZOŘI 💸</h3>
+        <div className="top-debtors-list">
+          {getTopSponsors().map((hrac, index) => (
+            <div key={hrac.id} className={`top-debtor-card top-${index + 1}`}>
+              <div className="debtor-photo-container">
+                <img 
+                  src={hrac.photoURL || playerPlaceholder} 
+                  alt={hrac.jmeno} 
+                  className="top-debtor-photo" 
+                />
+                <div className="debtor-crown"></div>
+              </div>
+              <div className="debtor-info">
+                <span className="debtor-name">{hrac.jmeno}</span>
+                <span className="debtor-amount">{hrac.dluhCelkem} Kč</span>
               </div>
             </div>
           ))}

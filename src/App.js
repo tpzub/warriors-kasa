@@ -215,14 +215,25 @@ const AppContent = () => {
     setPaidAmounts({ ...paidAmounts, [hracId]: value });
   };
 
+  const handleEditPaidAmount = (hracId) => {
+    setPaidAmounts({ ...paidAmounts, [hracId]: '' }); // Nastavíme prázdnou hodnotu
+    setEditPaidAmountId(hracId);
+  };
+
   const handleSavePaidAmount = async (hracId) => {
     const hracDoc = doc(firestore, 'hraci', hracId);
+    const hrac = hraci.find(h => h.id === hracId);
+    const currentPaidAmount = hrac.zaplatil || 0;
+    const newAmount = currentPaidAmount + Number(paidAmounts[hracId]);
+    
     await updateDoc(hracDoc, {
-      zaplatil: Number(paidAmounts[hracId])
+      zaplatil: newAmount
     });
+    
     setEditPaidAmountId(null);
+    setPaidAmounts({ ...paidAmounts, [hracId]: '' }); // Reset hodnoty inputu
     fetchHraci();
-    toast.success('Platba úspěšně aktualizována!');
+    toast.success('Platba úspěšně přidána!');
   };
 
   const handleLogout = async () => {
@@ -275,17 +286,18 @@ const AppContent = () => {
                       setEditHracJmeno={setEditHracJmeno}
                       updateHrac={updateHrac}
                       deleteHrac={deleteHrac}
-                      deletePokuta={deletePokuta}
                       deletePokutaByIndex={deletePokutaByIndex}
                       editPaidAmountId={editPaidAmountId}
                       setEditPaidAmountId={setEditPaidAmountId}
                       handlePaidAmountChange={handlePaidAmountChange}
                       handleSavePaidAmount={handleSavePaidAmount}
                       paidAmounts={paidAmounts}
+                      setPaidAmounts={setPaidAmounts}
                       addHrac={addHrac}
                       newHrac={newHrac}
                       setNewHrac={setNewHrac}
                       handlePhotoUpload={handlePhotoUpload}
+                      handleEditPaidAmount={handleEditPaidAmount}
                     />
                   </>
                 )}

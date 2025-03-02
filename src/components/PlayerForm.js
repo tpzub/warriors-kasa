@@ -74,13 +74,14 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
         classNamePrefix="custom-select"
       />
       <div className="playoff-checkbox">
-        <label>
+        <label className={`custom-checkbox ${isPlayOff ? 'checked' : ''}`}>
           <input
             type="checkbox"
             checked={isPlayOff}
             onChange={(e) => setIsPlayOff(e.target.checked)}
           />
-          Play-Off (x2)
+          <span className="checkmark"></span>
+          <span className="label-text">PLAY-OFF (x2)</span>
         </label>
       </div>
       <button className="add-button" type="submit">Přidat pokutu</button>

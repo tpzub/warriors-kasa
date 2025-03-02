@@ -182,6 +182,7 @@ h2 {
 }
 
 .bold-text {
+  font-size: 12px;
   font-weight: bold;
 }
 
@@ -1988,4 +1989,71 @@ td form .cancel-button {
     font-size: 14px;
     margin-top: 15px;
   }
+}
+
+/* Custom styling for penalty options in select dropdown */
+.pokuta-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.pokuta-option-name {
+  flex: 1;
+  text-align: left;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pokuta-option-amount {
+  font-weight: 600;
+  color: #ED1B26;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .pokuta-option {
+    font-size: 14px;
+  }
+  
+  .pokuta-option-amount {
+    font-size: 14px;
+  }
+}
+
+.pokuta-option.selected .pokuta-option-amount {
+  font-weight: 700;
+}
+
+/* Ensure the dropdown has enough space for the content */
+.custom-select__control {
+  min-height: 38px;
+}
+
+.custom-select__value-container {
+  padding: 2px 8px;
+}
+
+.custom-select__menu {
+  z-index: 100;
+}
+
+.custom-select__option {
+  padding: 8px 12px;
+}
+
+.custom-select__option--is-focused {
+  background-color: rgba(237, 27, 38, 0.05) !important;
+}
+
+.custom-select__option--is-selected {
+  background-color: rgba(237, 27, 38, 0.1) !important;
+  color: #333 !important;
+}
+
+.custom-select__option:active {
+  background-color: rgba(237, 27, 38, 0.15) !important;
 }

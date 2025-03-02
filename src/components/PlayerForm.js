@@ -48,6 +48,13 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
     castka: pokuta.castka
   }));
 
+  const formatPokutaOption = ({ label, castka }, { context }) => (
+    <div className={`pokuta-option ${context === 'value' ? 'selected' : ''}`}>
+      <span className="pokuta-option-name">{label}</span>
+      <span className="pokuta-option-amount">{castka} Kč</span>
+    </div>
+  );
+
   const handleHraciChange = (selectedOptions) => {
     if (selectedOptions.some(option => option.value === 'select_all')) {
       setSelectedHraci(hraciOptions.slice(1)); // Vyber všechny hráče kromě "Vybrat všechny"
@@ -72,6 +79,7 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
         options={pokutyOptions}
         placeholder="Vyber pokutu"
         classNamePrefix="custom-select"
+        formatOptionLabel={formatPokutaOption}
       />
       <div className="playoff-checkbox">
         <label className={`custom-checkbox ${isPlayOff ? 'checked' : ''}`}>

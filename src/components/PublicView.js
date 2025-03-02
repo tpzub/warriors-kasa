@@ -160,12 +160,39 @@ const PublicView = ({ hraci }) => {
           </div>
           <h2 style={{ marginLeft: '10px', fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
         </div>
-        <ul>
-          {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => (
-            <li key={index}>
-              <span className="bold-text">{index + 1}.&nbsp;</span>{pokuta.nazev}<small>({pokuta.datum})</small>
-            </li>
-          ))}
+        <ul className="pokuta-list">
+          {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => {
+            let nazev = pokuta.nazev;
+            
+            // Remove playoff indicator from display name
+            nazev = nazev.replace(/ \(PO: x2\)/g, '');
+            
+            // Remove amount from the name if it's appended
+            nazev = nazev.replace(/:\s*\d+\s*Kč$/g, '');
+            nazev = nazev.replace(/\s+\d+\s*Kč$/g, '');
+            
+            // If there's still a colon, take only the part before it
+            if (nazev.includes(':')) {
+              nazev = nazev.split(':')[0].trim();
+            }
+            
+            const isPlayOff = pokuta.isPlayOff || pokuta.nazev.includes('(PO: x2)');
+            
+            return (
+              <li key={index} className={isPlayOff ? 'playoff-penalty' : ''}>
+                <div className="pokuta-info">
+                  <span className="bold-text">{index + 1}.&nbsp;</span>
+                  <span className="pokuta-nazev">{nazev}</span>
+                </div>
+                <div className="pokuta-actions">
+                  <span className="pokuta-amount">
+                    {pokuta.castka} Kč
+                  </span>
+                  <small className="pokuta-datum">({pokuta.datum})</small>
+                </div>
+              </li>
+            );
+          })}
         </ul>
         <button onClick={closeModal} className="modal-close-button">Zavřít</button>
       </Modal>

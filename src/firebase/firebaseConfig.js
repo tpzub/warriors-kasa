@@ -20,4 +20,3 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 
 export { firestore, auth, firebaseConfig, storage }; // Přidání exportu firebaseConfig
-

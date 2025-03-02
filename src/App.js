@@ -80,7 +80,7 @@ const AppContent = () => {
   const generateId = () => '_' + Math.random().toString(36).substring(2, 11);
 
   const addPokuta = async (hracIds, pokuta) => {
-    const selectedPokuta = { ...pokuta, datum: new Date().toLocaleDateString(), id: generateId() }; // Ensure unique ID
+    const selectedPokuta = { ...pokuta, id: generateId() }; // Ensure unique ID
     const hraciData = [...hraci];
   
     for (let hracId of hracIds) {
@@ -156,30 +156,55 @@ const AppContent = () => {
   };
 
   const deletePokutaByIndex = async (hracId, index) => {
-    if (window.confirm('Opravdu chcete smazat tuto pokutu?')) {
-      const hracDoc = doc(firestore, 'hraci', hracId);
-      const hracData = hraci.find(h => h.id === hracId);
-      const pokutaToDelete = hracData.pokuty[index];
-  
-      if (!pokutaToDelete) {
-        console.error('Pokuta to delete not found');
-        return;
+    console.log('deletePokutaByIndex called with:', hracId, index);
+    
+    // Použijeme window.confirm pro zobrazení potvrzovacího dialogu
+    const confirmed = window.confirm('Opravdu chcete smazat tuto pokutu?');
+    console.log('Potvrzení mazání:', confirmed);
+    
+    if (confirmed) {
+      try {
+        const hracDoc = doc(firestore, 'hraci', hracId);
+        const hracData = hraci.find(h => h.id === hracId);
+        
+        if (!hracData) {
+          console.error('Hráč nebyl nalezen:', hracId);
+          return false;
+        }
+        
+        const pokutaToDelete = hracData.pokuty[index];
+    
+        if (!pokutaToDelete) {
+          console.error('Pokuta to delete not found');
+          return false;
+        }
+    
+        console.log('Mažu pokutu:', pokutaToDelete);
+        
+        const updatedPokuty = hracData.pokuty.filter((_, i) => i !== index);
+        const updatedDluhCelkem = hracData.dluhCelkem - pokutaToDelete.castka;
+    
+        await updateDoc(hracDoc, {
+          pokuty: updatedPokuty,
+          dluhCelkem: updatedDluhCelkem
+        });
+    
+        const updatedHraci = hraci.map(hrac =>
+          hrac.id === hracId ? { ...hrac, pokuty: updatedPokuty, dluhCelkem: updatedDluhCelkem } : hrac
+        );
+    
+        setHraci(updatedHraci);
+        toast.success('Pokuta úspěšně smazána!');
+        console.log('Pokuta úspěšně smazána');
+        return true;
+      } catch (error) {
+        console.error('Error deleting pokuta:', error);
+        toast.error('Chyba při mazání pokuty.');
+        return false;
       }
-  
-      const updatedPokuty = hracData.pokuty.filter((_, i) => i !== index);
-      const updatedDluhCelkem = hracData.dluhCelkem - pokutaToDelete.castka;
-  
-      await updateDoc(hracDoc, {
-        pokuty: updatedPokuty,
-        dluhCelkem: updatedDluhCelkem
-      });
-  
-      const updatedHraci = hraci.map(hrac =>
-        hrac.id === hracId ? { ...hrac, pokuty: updatedPokuty, dluhCelkem: updatedDluhCelkem } : hrac
-      );
-  
-      setHraci(updatedHraci);
-      toast.success('Pokuta úspěšně smazána!');
+    } else {
+      console.log('Mazání pokuty zrušeno uživatelem');
+      return false; // Uživatel zrušil mazání
     }
   };
   

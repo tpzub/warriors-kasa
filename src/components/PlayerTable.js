@@ -28,7 +28,9 @@ const PlayerTable = ({
   const [currentPlayer, setCurrentPlayer] = useState({});
 
   const openModal = (hrac) => {
-    setCurrentPlayer(hrac);
+    const updatedHrac = hraci.find(h => h.id === hrac.id) || hrac;
+    console.log('Otevírám modální okno pro hráče:', updatedHrac);
+    setCurrentPlayer(updatedHrac);
     setModalIsOpen(true);
   };
 
@@ -38,11 +40,19 @@ const PlayerTable = ({
   };
 
   const handleDeletePokuta = async (hracId, index) => {
-    await deletePokutaByIndex(hracId, index);
-    setCurrentPlayer((prev) => {
-      const updatedPokuty = prev.pokuty.filter((_, i) => i !== index);
-      return { ...prev, pokuty: updatedPokuty };
-    });
+    console.log('Mažu pokutu:', hracId, index);
+    try {
+      const success = await deletePokutaByIndex(hracId, index);
+      console.log('Výsledek mazání:', success);
+      if (success) {
+        setCurrentPlayer((prev) => {
+          const updatedPokuty = prev.pokuty.filter((_, i) => i !== index);
+          return { ...prev, pokuty: updatedPokuty };
+        });
+      }
+    } catch (error) {
+      console.error('Chyba při mazání pokuty:', error);
+    }
   };
 
   const totalDebt = hraci.reduce((sum, hrac) => sum + hrac.dluhCelkem, 0);
@@ -180,13 +190,58 @@ const PlayerTable = ({
             </div>
             <h2 style={{ marginLeft: '10px' , fontSize: '20px'}}>{currentPlayer.jmeno}</h2>
           </div>
-          <ul>
-            {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => (
-              <li key={index}>
-                <span className="bold-text">{index + 1}.&nbsp;</span>{pokuta.nazev}<small>({pokuta.datum})</small>
-                <FaTrashAlt className="icon delete-icon" onClick={() => handleDeletePokuta(currentPlayer.id, index)} />
-              </li>
-            ))}
+          <ul className="pokuta-list">
+            {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => {
+              let nazev = pokuta.nazev;
+              
+              nazev = nazev.replace(/ \(PO: x2\)/g, '');
+              
+              nazev = nazev.replace(/:\s*\d+\s*Kč$/g, '');
+              nazev = nazev.replace(/\s+\d+\s*Kč$/g, '');
+              
+              if (nazev.includes(':')) {
+                nazev = nazev.split(':')[0].trim();
+              }
+              
+              const isPlayOff = pokuta.isPlayOff || pokuta.nazev.includes('(PO: x2)');
+              
+              return (
+                <li key={index} className={isPlayOff ? 'playoff-penalty' : ''}>
+                  <div className="pokuta-info">
+                    <span className="bold-text">{index + 1}.&nbsp;</span>
+                    <span className="pokuta-nazev">{nazev}</span>
+                  </div>
+                  <div className="pokuta-actions">
+                    <span className="pokuta-amount">
+                      {pokuta.castka} Kč
+                    </span>
+                    <small className="pokuta-datum">({pokuta.datum})</small>
+                    <FaTrashAlt 
+                      className="icon delete-icon" 
+                      onClick={(e) => {
+                        e.preventDefault(); // Zabrání výchozímu chování
+                        e.stopPropagation(); // Zabrání propagaci události
+                        console.log('Kliknuto na ikonu koše pro pokutu:', index);
+                        
+                        // Přímé volání funkce deletePokutaByIndex
+                        deletePokutaByIndex(currentPlayer.id, index).then(success => {
+                          console.log('Výsledek mazání:', success);
+                          if (success) {
+                            // Aktualizovat lokální stav pouze pokud byla pokuta skutečně smazána
+                            setCurrentPlayer((prev) => {
+                              const updatedPokuty = prev.pokuty.filter((_, i) => i !== index);
+                              return { ...prev, pokuty: updatedPokuty };
+                            });
+                          }
+                        }).catch(error => {
+                          console.error('Chyba při mazání pokuty:', error);
+                        });
+                      }} 
+                    />
+                  </div>
+                </li>
+              );
+            })}
           </ul>
           <button onClick={closeModal} className="modal-close-button">Zavřít</button>
         </Modal>

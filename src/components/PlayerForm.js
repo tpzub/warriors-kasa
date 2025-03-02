@@ -5,6 +5,7 @@ import Select from 'react-select';
 const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
   const [selectedHraci, setSelectedHraci] = useState([]);
   const [selectedPokuta, setSelectedPokuta] = useState(null);
+  const [isPlayOff, setIsPlayOff] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,10 +19,19 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
     }
 
     const hracIds = selectedHraci.map(hrac => hrac.value);
-    addPokuta(hracIds, { nazev: selectedPokuta.label, castka: selectedPokuta.castka, datum: new Date().toLocaleDateString() });
+    const pokutaAmount = isPlayOff ? selectedPokuta.castka * 2 : selectedPokuta.castka;
+    
+    addPokuta(hracIds, { 
+      nazev: `${selectedPokuta.label}${isPlayOff ? ' (PO: x2)' : ''}`, 
+      castka: pokutaAmount, 
+      originalCastka: selectedPokuta.castka,
+      datum: new Date().toLocaleDateString('cs-CZ'),
+      isPlayOff: isPlayOff
+    });
     
     setSelectedHraci([]);
     setSelectedPokuta(null);
+    setIsPlayOff(false);
   };
 
   const hraciOptions = [
@@ -34,7 +44,7 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
 
   const pokutyOptions = pokuty.map(pokuta => ({
     value: pokuta.id,
-    label: `${pokuta.nazev}: ${pokuta.castka} Kč`,
+    label: pokuta.nazev,
     castka: pokuta.castka
   }));
 
@@ -63,6 +73,16 @@ const PlayerForm = ({ hraci, pokuty, addPokuta }) => {
         placeholder="Vyber pokutu"
         classNamePrefix="custom-select"
       />
+      <div className="playoff-checkbox">
+        <label>
+          <input
+            type="checkbox"
+            checked={isPlayOff}
+            onChange={(e) => setIsPlayOff(e.target.checked)}
+          />
+          Play-Off (x2)
+        </label>
+      </div>
       <button className="add-button" type="submit">Přidat pokutu</button>
     </form>
   );

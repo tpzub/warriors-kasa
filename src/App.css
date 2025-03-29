@@ -941,6 +941,9 @@ a.logo-link {
   padding: 15px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .summary-card-red {
@@ -958,6 +961,8 @@ a.logo-link {
 .summary-icon {
   font-size: 2em;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .summary-card-green .summary-icon {
@@ -984,8 +989,9 @@ a.logo-link {
 .summary-card-green h3,
 .summary-card-yellow h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -1002,8 +1008,10 @@ a.logo-link {
     margin-bottom: 10px;
     padding: 15px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
   }
 
   .summary-card-red {
@@ -1030,9 +1038,10 @@ a.logo-link {
   .summary-card-red h3,
   .summary-card-green h3,
   .summary-card-yellow h3 {
-    font-size: 16px;
+    font-size: 15px;
     margin: 0;
     white-space: nowrap;
+    font-weight: bold;
   }
 }
 

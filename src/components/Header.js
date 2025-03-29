@@ -88,7 +88,7 @@ const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHra
         <div className="space-y-4">
           <form onSubmit={handleSubmit}>
             <div className="space-y-2">
-              <Label htmlFor="playerName">Jméno hráče</Label>
+              <Label htmlFor="playerName" className="text-sm">Jméno hráče</Label>
               <Input
                 id="playerName"
                 type="text"
@@ -98,17 +98,18 @@ const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHra
                 className={cn(
                   "w-full",
                   "hover:border-gray-300",
-                  "placeholder:text-sm"
+                  "placeholder:text-sm",
+                  "text-sm"
                 )}
                 style={{ caretColor: 'black' }}
               />
             </div>
             
             <div className="pt-6 flex justify-between">
-              <Button className="bg-red-600 hover:bg-red-700 text-white" type="submit">
+              <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold text-sm" type="submit">
                 Přidat hráče
               </Button>
-              <Button className="bg-gray-300 hover:bg-gray-400 text-black" type="button" onClick={closeModal}>
+              <Button className="bg-gray-300 hover:bg-gray-400 text-black font-semibold text-sm" type="button" onClick={closeModal}>
                 Zrušit
               </Button>
             </div>

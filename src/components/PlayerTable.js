@@ -278,7 +278,7 @@ const PlayerTable = ({
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
               <FaCoins className="summary-icon" size={24} />
             </div>
-            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Celkový dluh všech hráčů:</p>
+            <p style={{ fontWeight: '500', marginLeft: '5px', fontSize: '14px' }}>Celkový dluh všech hráčů:</p>
           </div>
           <h3>{formattedTotalDebt}</h3>
         </div>
@@ -287,7 +287,7 @@ const PlayerTable = ({
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
               <FaMoneyBillWave className="summary-icon" size={24} />
             </div>
-            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Celkově všichni zaplatili:</p>
+            <p style={{ fontWeight: '500', marginLeft: '5px', fontSize: '14px' }}>Celkově všichni zaplatili:</p>
           </div>
           <h3>{formattedTotalPaid}</h3>
         </div>
@@ -296,7 +296,7 @@ const PlayerTable = ({
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
               <FaHandHoldingUsd className="summary-icon" size={24} />
             </div>
-            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Ješte zbývá vybrat:</p>
+            <p style={{ fontWeight: '500', marginLeft: '5px', fontSize: '14px' }}>Ješte zbývá vybrat:</p>
           </div>
           <h3>{formattedTotalRemaining}</h3>
         </div>

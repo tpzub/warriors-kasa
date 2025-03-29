@@ -105,7 +105,7 @@ const PlayerFormShadcn = ({ hraci, pokuty, addPokuta }) => {
     }),
     placeholder: (provided) => ({
       ...provided,
-      fontSize: '14px',
+      fontSize: '16px',
     }),
     option: (provided, state) => ({
       ...provided,

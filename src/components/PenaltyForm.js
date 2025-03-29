@@ -38,7 +38,7 @@ const PenaltyForm = ({ addNewPokuta }) => {
                   className={cn(
                     "w-full",
                     "hover:border-gray-300",
-                    "placeholder:text-sm"
+                    "placeholder:text-base"
                   )}
                   style={{ caretColor: 'black' }}
                 />
@@ -55,7 +55,7 @@ const PenaltyForm = ({ addNewPokuta }) => {
                   className={cn(
                     "w-full",
                     "hover:border-gray-300",
-                    "placeholder:text-sm"
+                    "placeholder:text-base"
                   )}
                   style={{ caretColor: 'black' }}
                 />

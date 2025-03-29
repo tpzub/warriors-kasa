@@ -47,9 +47,10 @@ const Login = () => {
                 placeholder="admin@example.com"
                 required
                 className={cn(
-                  "w-full",
-                  "hover:border-gray-300",
-                  "placeholder:text-sm"
+                  "flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 shadow-sm transition-colors file:border-0 file:bg-transparent",
+                  "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                  "disabled:cursor-not-allowed disabled:opacity-50",
+                  "placeholder:text-base",
                 )}
                 style={{ caretColor: 'black' }}
               />
@@ -64,9 +65,10 @@ const Login = () => {
                 placeholder="••••••••"
                 required
                 className={cn(
-                  "w-full",
-                  "hover:border-gray-300",
-                  "placeholder:text-sm"
+                  "flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 shadow-sm transition-colors file:border-0 file:bg-transparent",
+                  "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                  "disabled:cursor-not-allowed disabled:opacity-50",
+                  "placeholder:text-base",
                 )}
                 style={{ caretColor: 'black' }}
               />

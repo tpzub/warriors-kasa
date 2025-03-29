@@ -1,4 +1,3 @@
-import { Medal, Trophy, User, Crown } from "lucide-react"
 import { cn } from "../lib/utils"
 
 export function TopRankings({
@@ -7,32 +6,16 @@ export function TopRankings({
   type,
   className
 }) {
-  const getIcon = (position) => {
-    switch (position) {
-      case 0:
-        return (
-          <div
-            className="flex items-center justify-center w-6 h-6 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full">
-            <Crown className="h-4 w-4 text-white" />
-          </div>
-        );
-      case 1:
-        return (
-          <div
-            className="flex items-center justify-center w-6 h-6 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full">
-            <Trophy className="h-4 w-4 text-white" />
-          </div>
-        );
-      case 2:
-        return (
-          <div
-            className="flex items-center justify-center w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-700 rounded-full">
-            <Medal className="h-4 w-4 text-white" />
-          </div>
-        );
-      default:
-        return <User className="h-4 w-4" />;
-    }
+  const getPositionNumber = (position) => {
+    return (
+      <div className={cn(
+        "flex items-center justify-center w-6 h-6 rounded-full font-semibold",
+        type === "debtors" ? "bg-[#ED1B26]" : "bg-[#1fad02]",
+        "text-white"
+      )}>
+        {position + 1}
+      </div>
+    );
   }
 
   const getPositionClass = (position) => {
@@ -53,15 +36,14 @@ export function TopRankings({
       <div
         className={cn(
           "rounded-lg shadow-md overflow-hidden border-l-4 mb-4",
-          type === "debtors" ? "border-l-red-500" : "border-l-green-500"
+          type === "debtors" ? "border-l-[#ED1B26]" : "border-l-[#1fad02]"
         )}>
         <div
           className={cn(
-            "py-3 px-4 font-bold text-white text-center text-base",
-            type === "debtors" ? "bg-red-500" : "bg-green-500"
+            "py-3 px-4 font-bold text-white text-center text-[15px]",
+            type === "debtors" ? "bg-[#ED1B26]" : "bg-[#1fad02]"
           )}>
           {title}
-          {type === "debtors" ? <span className="ml-2">💸</span> : <span className="ml-2">🏆</span>}
         </div>
 
         <div className="divide-y divide-gray-100">
@@ -69,10 +51,12 @@ export function TopRankings({
             <div
               key={item.id}
               className={cn(
-                "flex items-center p-3 transition-all hover:brightness-95",
+                "flex items-center p-2",
                 getPositionClass(index)
               )}>
-              <div className="flex items-center justify-center mr-3">{getIcon(index)}</div>
+              <div className="flex items-center justify-center mr-3">
+                {getPositionNumber(index)}
+              </div>
 
               <div
                 className="relative w-9 h-9 rounded-full overflow-hidden border border-white shadow-sm mr-3">
@@ -87,7 +71,7 @@ export function TopRankings({
               <div
                 className={cn(
                   "px-3 py-1 rounded-full text-white font-medium text-sm",
-                  type === "debtors" ? "bg-red-500" : "bg-green-500"
+                  type === "debtors" ? "bg-[#ED1B26]" : "bg-[#1fad02]"
                 )}>
                 {item.amount.toLocaleString()} Kč
               </div>

@@ -16,6 +16,7 @@ function Input({
         "hover:border-gray-300 hover:bg-transparent",
         "focus:border-gray-400 focus:outline-none focus:ring-0 focus:shadow-none focus:bg-transparent",
         "aria-invalid:border-destructive",
+        "placeholder:text-base placeholder:text-[16px]",
         className
       )}
       {...props} />

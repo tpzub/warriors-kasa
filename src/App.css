@@ -14,6 +14,23 @@ body {
   min-width: 320px; /* Minimální šířka pro celý dokument */
 }
 
+/* Set all placeholders to 16px to prevent zooming on mobile */
+::placeholder,
+::-webkit-input-placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+  font-size: 16px !important;
+}
+
+select option {
+  font-size: 16px !important;
+}
+
+/* Placeholder styles for select elements with data-placeholder attribute */
+[data-placeholder] {
+  font-size: 16px !important;
+}
+
 #root {
   min-width: 320px; /* Minimální šířka pro root element aplikace */
 }
@@ -981,7 +998,7 @@ a.logo-link {
 .summary-card-green p,
 .summary-card-yellow p {
   margin: 10px 0;
-  font-size: 13px;
+  font-size: 14px;
   color: white;
 }
 
@@ -1033,6 +1050,7 @@ a.logo-link {
   .summary-card-green p,
   .summary-card-yellow p {
     margin: 0;
+    font-size: 14px;
   }
 
   .summary-card-red h3,
@@ -2181,4 +2199,18 @@ td form .cancel-button {
 .add-player-modal .flex.justify-between button {
   flex: 1;
   width: 50%;
+}
+
+/* React Select component styles for preventing mobile zoom */
+.css-1uccc91-singleValue,
+.css-qc6sy-singleValue,
+.css-26l3qy-menu,
+.css-1wa3eu0-placeholder {
+  font-size: 16px !important;
+}
+
+.custom-select__placeholder,
+.custom-select__single-value,
+.custom-select__input {
+  font-size: 16px !important;
 }

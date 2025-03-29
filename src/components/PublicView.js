@@ -151,13 +151,20 @@ const PublicView = ({ hraci }) => {
 
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal" overlayClassName="overlay">
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px', justifyContent: 'center' }}>
-          <div className="overflow-hidden rounded-circle" style={{ width: '48px', height: '48px', marginRight: '10px' }}>
-            <img
-              src={currentPlayer.photoURL || playerPlaceholder}
-              alt="Player"
-              className="player-photo"
-            />
-          </div>
+          <img
+            src={currentPlayer.photoURL || playerPlaceholder}
+            alt="Player"
+            style={{
+              width: '60px',
+              height: '60px',
+              borderRadius: '50%',
+              marginRight: '10px',
+              objectFit: 'cover',
+              WebkitBorderRadius: '50%',
+              MozBorderRadius: '50%',
+              display: 'block'
+            }}
+          />
           <h2 style={{ marginLeft: '10px', fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
         </div>
         <ul className="pokuta-list">

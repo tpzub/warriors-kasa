@@ -1377,6 +1377,7 @@ a.logo-link {
   height: 60px;
   min-width: 60px;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
@@ -1386,6 +1387,7 @@ a.logo-link {
     height: 60px;
     min-width: 60px;
     margin-right: 10px;
+    border-radius: 50%;
   }
 
   /* Původní styly pro fotky v tabulce zůstávají nezměněné */
@@ -2087,4 +2089,37 @@ td form .cancel-button {
   height: 16px;
   width: 16px;
   cursor: pointer;
+}
+
+/* Styles for the player photo container to ensure proper rounded display */
+.player-photo-container {
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific styling for the modal player photo to ensure it's properly rounded */
+.modal-player-photo-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.modal-player-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .modal-player-photo-container {
+    width: 48px;
+    height: 48px;
+  }
 }

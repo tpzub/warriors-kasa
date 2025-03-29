@@ -254,8 +254,14 @@ const PlayerTable = ({
         </Modal>
       </div>
 
-      <div className="rankings-container" style={{ marginBottom: '20px', maxWidth: '80%', margin: '30px auto 30px auto' }}>
+      <div className="rankings-container" style={{ marginBottom: '20px', maxWidth: '90%', margin: '30px auto 30px auto' }}>
         <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+          <TopRankings 
+            title="NEJVÍC ZAPLATIL" 
+            items={topSponsorsForRankings} 
+            type="sponsors" 
+            className="flex-1"
+          />
           <TopRankings 
             title="NEJVÍC DLUŽÍ" 
             items={topDebtorsForRankings} 
@@ -263,12 +269,6 @@ const PlayerTable = ({
             className="flex-1"
           />
           
-          <TopRankings 
-            title="NEJVÍC ZAPLATIL" 
-            items={topSponsorsForRankings} 
-            type="sponsors" 
-            className="flex-1"
-          />
         </div>
       </div>
 

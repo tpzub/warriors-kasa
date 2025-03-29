@@ -23,6 +23,7 @@ body {
   margin: 0 auto;
   background-color: white;
   min-width: 320px; /* Minimální šířka pro hlavní container */
+  padding: 0;
 }
 
 h2 {

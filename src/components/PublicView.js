@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { FaCoins, FaHandHoldingUsd, FaMoneyBillWave } from 'react-icons/fa';
 import playerPlaceholder from '../assets/player-placeholder.png';
+import { TopRankings } from './top-rankings';
 
 const PublicView = ({ hraci }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -34,10 +35,25 @@ const PublicView = ({ hraci }) => {
 
   const getTopSponsors = () => {
     return [...hraci]
-      .sort((a, b) => b.dluhCelkem - a.dluhCelkem)
+      .sort((a, b) => (b.zaplatil || 0) - (a.zaplatil || 0))
       .slice(0, 3)
-      .filter(hrac => hrac.dluhCelkem > 0);
+      .filter(hrac => (hrac.zaplatil || 0) > 0);
   };
+
+  // Transform data for TopRankings component
+  const topDebtorsForRankings = getTopDebtors().map(hrac => ({
+    id: hrac.id,
+    name: hrac.jmeno,
+    imageUrl: hrac.photoURL || playerPlaceholder,
+    amount: hrac.dluhCelkem - (hrac.zaplatil || 0)
+  }));
+
+  const topSponsorsForRankings = getTopSponsors().map(hrac => ({
+    id: hrac.id,
+    name: hrac.jmeno,
+    imageUrl: hrac.photoURL || playerPlaceholder,
+    amount: hrac.zaplatil || 0
+  }));
 
   return (
     <div>
@@ -81,69 +97,49 @@ const PublicView = ({ hraci }) => {
         </table>
       </div>
 
-      <div className="top-debtors">
-        <h3>TOP 3 DLUŽNÍCI 😠</h3>
-        <div className="top-debtors-list">
-          {getTopDebtors().map((hrac, index) => (
-            <div key={hrac.id} className={`top-debtor-card top-${index + 1}`}>
-              <div className="debtor-photo-container">
-                <img 
-                  src={hrac.photoURL || playerPlaceholder} 
-                  alt={hrac.jmeno} 
-                  className="top-debtor-photo" 
-                />
-                <div className="debtor-crown"></div>
-              </div>
-              <div className="debtor-info">
-                <span className="debtor-name">{hrac.jmeno}</span>
-                <span className="debtor-amount">{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="top-debtors">
-      <h3 className="sponsors-heading">TOP 3 SPONZOŘI 💸</h3>
-        <div className="top-debtors-list">
-          {getTopSponsors().map((hrac, index) => (
-            <div key={hrac.id} className={`top-debtor-card top-${index + 1}`}>
-              <div className="debtor-photo-container">
-                <img 
-                  src={hrac.photoURL || playerPlaceholder} 
-                  alt={hrac.jmeno} 
-                  className="top-debtor-photo" 
-                />
-                <div className="debtor-crown"></div>
-              </div>
-              <div className="debtor-info">
-                <span className="debtor-name">{hrac.jmeno}</span>
-                <span className="debtor-amount">{hrac.dluhCelkem} Kč</span>
-              </div>
-            </div>
-          ))}
+      <div className="rankings-container" style={{ marginBottom: '20px', maxWidth: '80%', margin: '30px auto 30px auto' }}>
+        <div className="flex flex-col md:flex-row gap-3 md:gap-5">
+          <TopRankings 
+            title="NEJVÍC DLUŽÍ" 
+            items={topDebtorsForRankings} 
+            type="debtors" 
+            className="flex-1"
+          />
+          
+          <TopRankings 
+            title="NEJVÍC ZAPLATIL" 
+            items={topSponsorsForRankings} 
+            type="sponsors" 
+            className="flex-1"
+          />
         </div>
       </div>
 
       <div className="summary-container">
         <div className="summary-card-red">
           <div className="summary-card-left">
-            <FaCoins className="summary-icon" />
-            <p>Celkový dluh všech hráčů</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
+              <FaCoins className="summary-icon" size={24} />
+            </div>
+            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Celkový dluh všech hráčů</p>
           </div>
           <h3>{formattedTotalDebt}</h3>
         </div>
         <div className="summary-card-green">
           <div className="summary-card-left">
-            <FaMoneyBillWave className="summary-icon" />
-            <p>Celkově všichni zaplatili</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
+              <FaMoneyBillWave className="summary-icon" size={24} />
+            </div>
+            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Celkově všichni zaplatili</p>
           </div>
           <h3>{formattedTotalPaid}</h3>
         </div>
         <div className="summary-card-yellow">
           <div className="summary-card-left">
-            <FaHandHoldingUsd className="summary-icon" />
-            <p>Ješte zbývá vybrat</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', height: '40px' }}>
+              <FaHandHoldingUsd className="summary-icon" size={24} />
+            </div>
+            <p style={{ fontWeight: '500', marginLeft: '5px' }}>Ješte zbývá vybrat</p>
           </div>
           <h3>{formattedTotalRemaining}</h3>
         </div>

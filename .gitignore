@@ -47,3 +47,6 @@ logs
 
 # Ignore Webstorm files
 .idea/
+
+# Ignore todo list
+todo.txt

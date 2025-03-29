@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -5,13 +11,18 @@ body {
   background-image: url('/src/assets/logo-bg.png'); /* Cesta k vašemu logu */
   background-repeat: repeat; /* Opakování ve všech směrech */
   background-size: auto;/* Ponechá původní velikost loga */
+  min-width: 320px; /* Minimální šířka pro celý dokument */
 }
 
-/* Reset stylů */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+#root {
+  min-width: 320px; /* Minimální šířka pro root element aplikace */
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: white;
+  min-width: 320px; /* Minimální šířka pro hlavní container */
 }
 
 h2 {
@@ -85,7 +96,7 @@ h2 {
   }
 
   .form-container select, .form-container input {
-    width: 80% !important;
+    width: 100% !important;
     font-size: 16px !important;
   }
 
@@ -114,7 +125,7 @@ h2 {
   }
 
   .css-b62m3t-container, .form-container button {
-    width: 80% !important;
+    width: 100% !important;
   }
 
   .nav-list li {
@@ -186,12 +197,6 @@ h2 {
   font-weight: bold;
 }
 
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  background-color: white;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -203,7 +208,7 @@ h2 {
 }
 
 .form-container select, .form-container input{
-  width: 50%;
+  width: 100%;
   padding: 8px;
   border-style: solid;
   border-color: hsl(0, 0%, 80%);
@@ -218,7 +223,7 @@ h2 {
 }
 
 .form-container button {
-  width: 50%;
+  width: 100%;
   padding: 10px;
 }
 
@@ -236,12 +241,12 @@ input, select {
 
 .login-form input:focus, .login-form button:focus {
   outline: none; /* Odstraní výchozí obrys */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Přidá jemný stín pro zvýraznění */
+  box-shadow: none; /* Odstraní stíny */
 }
 
 input:focus, select:focus {
   outline: none; /* Odstraní výchozí obrys */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Přidá jemný stín pro zvýraznění */
+  box-shadow: none; /* Odstraní stíny */
 }
 
 .nav-list {
@@ -1129,7 +1134,7 @@ a.logo-link {
 /* Upravit Select komponentu */
 .css-b62m3t-container {
   position: relative !important;
-  width: 50%;
+  width: 100%;
 }
 
 .player-info {
@@ -1235,7 +1240,7 @@ a.logo-link {
 .login-form input:focus {
   border-color: #ED1B26;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(237, 27, 38, 0.1);
+  box-shadow: none;
 }
 
 .login-form button {
@@ -2060,4 +2065,25 @@ td form .cancel-button {
 
 .custom-select__option:active {
   background-color: rgba(237, 27, 38, 0.15) !important;
+}
+
+/* UI Toggle Switch */
+.ui-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ui-toggle label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  gap: 8px;
+}
+
+.ui-toggle input[type="checkbox"] {
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
 }

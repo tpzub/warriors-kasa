@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Header from './components/Header';
 import PlayerForm from './components/PlayerForm';
+import PlayerFormShadcn from './components/PlayerFormShadcn';
 import PenaltyForm from './components/PenaltyForm';
 import PlayerTable from './components/PlayerTable';
 import PenaltyTable from './components/PenaltyTable';
@@ -301,8 +302,7 @@ const AppContent = () => {
               <>
                 {activePage === 'evidence' && (
                   <>
-                    <h2 className="center-text">Správa dluhů</h2>
-                    <PlayerForm hraci={hraci} pokuty={pokuty} addPokuta={addPokuta} />
+                    <PlayerFormShadcn hraci={hraci} pokuty={pokuty} addPokuta={addPokuta} />
                     <PlayerTable
                       hraci={hraci}
                       editHracId={editHracId}
@@ -328,7 +328,6 @@ const AppContent = () => {
                 )}
                 {activePage === 'penalties' && (
                   <>
-                    <h2 className="center-text">Správa pokut</h2>
                     <PenaltyForm addNewPokuta={addNewPokuta} />
                     <PenaltyTable
                       pokuty={pokuty}

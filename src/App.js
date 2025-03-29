@@ -293,6 +293,9 @@ const AppContent = () => {
         handleLogout={handleLogout}
         activePage={activePage}
         setActivePage={setActivePage}
+        addHrac={addHrac}
+        newHrac={newHrac}
+        setNewHrac={setNewHrac}
       />
       <Routes>
         <Route path="/" element={<Navigate to="/warriors-kasa" />} />
@@ -318,9 +321,6 @@ const AppContent = () => {
                       handleSavePaidAmount={handleSavePaidAmount}
                       paidAmounts={paidAmounts}
                       setPaidAmounts={setPaidAmounts}
-                      addHrac={addHrac}
-                      newHrac={newHrac}
-                      setNewHrac={setNewHrac}
                       handlePhotoUpload={handlePhotoUpload}
                       handleEditPaidAmount={handleEditPaidAmount}
                     />

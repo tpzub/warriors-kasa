@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { FaUserCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCog, FaSignOutAlt, FaUserPlus } from 'react-icons/fa';
+import Modal from 'react-modal';
+import { Button } from "./ui/button.jsx";
+import { Label } from "./ui/label.jsx";
+import { Input } from "./ui/input.jsx";
+import { cn } from "../lib/utils.js";
 
-const Header = ({ user, handleLogout, activePage, setActivePage }) => {
+const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHrac, setNewHrac }) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+    setNewHrac('');
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setNewHrac('');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (newHrac.trim()) {
+      addHrac(e);
+      closeModal();
+    }
+  };
+
   return (
     <header className="header">
       <nav>
@@ -15,6 +40,11 @@ const Header = ({ user, handleLogout, activePage, setActivePage }) => {
             </Link>
           </div>
           <div className="nav-right">
+            {user && (
+              <button onClick={openModal} className="auth-button add-player-icon-button">
+                <FaUserPlus className="auth-icon" style={{ color: 'white' }} />
+              </button>
+            )}
             {user ? (
               <button onClick={handleLogout} className="auth-button">
                 <FaSignOutAlt className="auth-icon" />
@@ -52,6 +82,39 @@ const Header = ({ user, handleLogout, activePage, setActivePage }) => {
           </div>
         </div>
       </nav>
+
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal add-player-modal" overlayClassName="overlay">
+        <h2>Přidat hráče</h2>
+        <div className="space-y-4">
+          <form onSubmit={handleSubmit}>
+            <div className="space-y-2">
+              <Label htmlFor="playerName">Jméno hráče</Label>
+              <Input
+                id="playerName"
+                type="text"
+                value={newHrac}
+                onChange={(e) => setNewHrac(e.target.value)}
+                placeholder="Zadejte jméno hráče"
+                className={cn(
+                  "w-full",
+                  "hover:border-gray-300",
+                  "placeholder:text-sm"
+                )}
+                style={{ caretColor: 'black' }}
+              />
+            </div>
+            
+            <div className="pt-6 flex justify-between">
+              <Button className="bg-red-600 hover:bg-red-700 text-white" type="submit">
+                Přidat hráče
+              </Button>
+              <Button className="bg-gray-300 hover:bg-gray-400 text-black" type="button" onClick={closeModal}>
+                Zrušit
+              </Button>
+            </div>
+          </form>
+        </div>
+      </Modal>
     </header>
   );
 };

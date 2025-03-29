@@ -18,9 +18,6 @@ const PlayerTable = ({
   handleSavePaidAmount,
   paidAmounts,
   setPaidAmounts,
-  addHrac,
-  newHrac,
-  setNewHrac,
   handlePhotoUpload,
   handleEditPaidAmount
 }) => {
@@ -163,19 +160,6 @@ const PlayerTable = ({
                 <td><span className='amount'>{hrac.dluhCelkem - (hrac.zaplatil || 0)} Kč</span></td>
               </tr>
             ))}
-            <tr>
-              <td colSpan="6">
-                <form onSubmit={addHrac}>
-                  <input
-                    type="text"
-                    value={newHrac}
-                    onChange={(e) => setNewHrac(e.target.value)}
-                    placeholder="Jméno hráče"
-                  />
-                  <button className="add-player-button" type="submit">Přidat hráče</button>
-                </form>
-              </td>
-            </tr>
           </tbody>
         </table>
 

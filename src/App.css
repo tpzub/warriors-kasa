@@ -2123,3 +2123,53 @@ td form .cancel-button {
     height: 48px;
   }
 }
+
+/* Add Player Icon Button */
+.add-player-icon-button {
+  margin-right: 8px !important;
+}
+
+.add-player-icon-button .auth-icon {
+  color: #ED1B26;
+}
+
+/* Add Player Modal */
+.add-player-modal {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 24px;
+  outline: none;
+}
+
+.add-player-modal h2 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Ensure the icon is white and an appropriate size */
+.add-player-icon-button .auth-icon {
+  font-size: 18px;
+}
+
+/* Add responsive styling for mobile */
+@media (max-width: 768px) {
+  .add-player-modal {
+    max-width: 90%;
+    padding: 16px;
+  }
+}
+
+.add-player-modal .flex.justify-between {
+  gap: 10px;
+}
+
+.add-player-modal .flex.justify-between button {
+  flex: 1;
+  width: 50%;
+}

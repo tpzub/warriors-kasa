@@ -164,7 +164,15 @@ const PublicView = ({ hraci }) => {
           <h2 style={{ marginLeft: '10px', fontSize: '20px' }}>{currentPlayer.jmeno}</h2>
         </div>
         <ul className="pokuta-list">
-          {currentPlayer.pokuty && currentPlayer.pokuty.map((pokuta, index) => {
+          {currentPlayer.pokuty && [...currentPlayer.pokuty]
+            .sort((a, b) => {
+              // Převod datumu na objekty Date
+              const dateA = new Date(a.datum.split('.').reverse().join('-'));
+              const dateB = new Date(b.datum.split('.').reverse().join('-'));
+              // Řazení vzestupně - od nejstarších po nejnovější
+              return dateA - dateB;
+            })
+            .map((pokuta, index) => {
             let nazev = pokuta.nazev;
             
             // Remove playoff indicator from display name

@@ -425,6 +425,7 @@ const PlayerTable = ({
                   onChange={handleLocalNameChange}
                   placeholder="Jméno hráče"
                   className="full-width-input"
+                  style={{ height: '38px' }}
                 />
               </div>
               
@@ -455,26 +456,27 @@ const PlayerTable = ({
                   onChange={handleLocalNewPaymentChange}
                   placeholder="Zadejte částku"
                   className="full-width-input"
+                  style={{ height: '38px' }}
                 />
                 <div className="amount-info">
                   <div>
-                    <span className="amount-label">Celkový dluh:</span>
-                    <span className="amount-value" style={{ color: '#d9534f' }}>{playerToEdit.dluhCelkem} Kč</span>
+                    <span className="amount-label" style={{ fontSize: '15px' }}>Celkový dluh:</span>
+                    <span className="amount-value" style={{ color: '#ED1B26', fontSize: '15px' }}>{playerToEdit.dluhCelkem} Kč</span>
                   </div>
                   <div>
-                    <span className="amount-label">Zaplaceno:</span>
-                    <span className="amount-value" style={{ color: '#5cb85c' }}>{playerToEdit.zaplatil || 0} Kč</span>
+                    <span className="amount-label" style={{ fontSize: '15px' }}>Zaplaceno:</span>
+                    <span className="amount-value" style={{ color: '#5cb85c', fontSize: '15px' }}>{playerToEdit.zaplatil || 0} Kč</span>
                   </div>
                   <div>
-                    <span className="amount-label">Zbývá zaplatit:</span>
-                    <span className="amount-value" style={{ color: '#f0ad4e' }}>{getRemainingDebt(playerToEdit)} Kč</span>
+                    <span className="amount-label" style={{ fontSize: '15px' }}>Zbývá zaplatit:</span>
+                    <span className="amount-value" style={{ color: '#f0ad4e', fontSize: '15px' }}>{getRemainingDebt(playerToEdit)} Kč</span>
                   </div>
                   {localNewPayment && (
                     <div className={`payment-preview ${parseFloat(localNewPayment) < 0 ? 'negative-payment' : 'positive-payment'}`}>
-                      <span className="amount-label">
+                      <span className="amount-label" style={{ fontSize: '15px' }}>
                         {parseFloat(localNewPayment) < 0 ? 'Po vrácení platby:' : 'Po přidání platby:'}
                       </span>
-                      <span className="amount-value">
+                      <span className="amount-value" style={{ fontSize: '15px' }}>
                         {wouldCauseNegativePaid(playerToEdit, localNewPayment) ? (
                           <span className="payment-warning">
                             (Nelze mít záporné zaplaceno, bude nastaveno na 0)
@@ -504,6 +506,7 @@ const PlayerTable = ({
                 <button 
                   className="save-button" 
                   onClick={handleSavePlayerChanges}
+                  style={{ padding: '8px 16px', fontSize: '0.9rem' }}
                 >
                   Uložit změny
                 </button>
@@ -511,6 +514,7 @@ const PlayerTable = ({
                 <button 
                   className="delete-button" 
                   onClick={handleDeletePlayerConfirm}
+                  style={{ backgroundColor: '#ED1B26', padding: '8px 16px', fontSize: '0.9rem' }}
                 >
                   <FaTrashAlt /> Smazat hráče
                 </button>
@@ -518,6 +522,7 @@ const PlayerTable = ({
                 <button 
                   className="cancel-button" 
                   onClick={closeEditModal}
+                  style={{ padding: '8px 16px', fontSize: '0.9rem' }}
                 >
                   Zrušit
                 </button>

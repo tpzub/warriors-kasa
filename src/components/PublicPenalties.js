@@ -10,7 +10,7 @@ const PublicPenalties = ({ pokuty }) => {
             <tr>
               <th>#</th>
               <th>Název pokuty</th>
-              <th>Částka</th>
+              <th style={{ textAlign: 'center' }}>Částka</th>
             </tr>
           </thead>
           <tbody>
@@ -18,7 +18,7 @@ const PublicPenalties = ({ pokuty }) => {
               <tr key={pokuta.id}>
                 <td>{index + 1}</td>
                 <td>{pokuta.nazev}</td>
-                <td>{pokuta.castka} Kč</td>
+                <td style={{ textAlign: 'center' }}>{pokuta.castka} Kč</td>
               </tr>
             ))}
           </tbody>
@@ -26,8 +26,8 @@ const PublicPenalties = ({ pokuty }) => {
       </div>
       <div className='penalties-notice'>
         <ul>
-          <li>Menší tresty se sčítají!</li>
-          <li>Play-off x2! (neplatí pro pozitivní věci jako gól, asistence, atd.)</li>
+          <li><span className='bold-text'>Menší tresty se sčítají!</span></li>
+          <li><span className='bold-text'>Play-off x2!</span> <span className="normal-text">(neplatí pro pozitivní věci jako gól, asistence, atd.)</span></li>
         </ul>
       </div>
     </>

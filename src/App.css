@@ -836,7 +836,7 @@ a.logo-link {
 
 .app-title {
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   margin-left: 1rem;
   font-family: "Fugaz One", sans-serif;
@@ -845,7 +845,7 @@ a.logo-link {
 }
 
 .logo {
-  height: 120px;
+  height: 100px;
   width: auto;
   display: block;
 }

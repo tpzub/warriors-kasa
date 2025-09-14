@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
-import { FaUserCog, FaSignOutAlt, FaUserPlus } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserPlus, FaCog, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import Modal from 'react-modal';
 import { Button } from "./ui/button.jsx";
 import { Label } from "./ui/label.jsx";
@@ -10,10 +10,30 @@ import { cn } from "../lib/utils.js";
 
 const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHrac, setNewHrac }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Zavřít menu při kliknutí mimo něj
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
 
   const openModal = () => {
     setModalIsOpen(true);
     setNewHrac('');
+    setMenuOpen(false);
   };
 
   const closeModal = () => {
@@ -29,6 +49,20 @@ const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHra
     }
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleSeasonManagement = () => {
+    setActivePage('season');
+    setMenuOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    handleLogout();
+    setMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <nav>
@@ -40,18 +74,42 @@ const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHra
             </Link>
           </div>
           <div className="nav-right">
-            {user && (
-              <button onClick={openModal} className="auth-button add-player-icon-button">
-                <FaUserPlus className="auth-icon" style={{ color: 'white' }} />
-              </button>
-            )}
             {user ? (
-              <button onClick={handleLogout} className="auth-button">
-                <FaSignOutAlt className="auth-icon" />
-              </button>
+              <div className="hamburger-menu-container" ref={menuRef}>
+                <button onClick={toggleMenu} className="hamburger-button">
+                  {menuOpen ? <FaTimes /> : <FaBars />}
+                </button>
+                
+                {menuOpen && (
+                  <div className="dropdown-menu">
+                    <div className="menu-header">
+                      <FaUser className="user-icon" />
+                      <span className="user-email">{user.email}</span>
+                    </div>
+                    <div className="menu-divider"></div>
+                    
+                    <button onClick={openModal} className="menu-item">
+                      <FaUserPlus className="menu-icon" />
+                      <span>Přidat hráče</span>
+                    </button>
+                    
+                    <button onClick={handleSeasonManagement} className="menu-item">
+                      <FaCog className="menu-icon" />
+                      <span>Správa sezón</span>
+                    </button>
+                    
+                    <div className="menu-divider"></div>
+                    
+                    <button onClick={handleLogoutClick} className="menu-item logout">
+                      <FaSignOutAlt className="menu-icon" />
+                      <span>Odhlásit</span>
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <Link to="/login" className="auth-button">
-                <FaUserCog className="auth-icon" />
+                <FaUser className="auth-icon" />
               </Link>
             )}
           </div>
@@ -98,19 +156,34 @@ const Header = ({ user, handleLogout, activePage, setActivePage, addHrac, newHra
                 className={cn(
                   "w-full",
                   "hover:border-gray-300",
-                  "placeholder:text-base",
-                  "text-sm"
+                  "focus:border-primary focus:ring-2 focus:ring-primary/20",
+                  "transition-all duration-200"
                 )}
-                style={{ caretColor: 'black' }}
+                autoFocus
               />
             </div>
-            
-            <div className="pt-6 flex justify-between">
-              <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold text-sm" type="submit">
-                Přidat hráče
-              </Button>
-              <Button className="bg-gray-300 hover:bg-gray-400 text-black font-semibold text-sm" type="button" onClick={closeModal}>
+            <div className="flex gap-3 mt-6 justify-end">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={closeModal}
+                className={cn(
+                  "px-4 py-2",
+                  "hover:bg-gray-50",
+                  "transition-colors duration-200"
+                )}
+              >
                 Zrušit
+              </Button>
+              <Button
+                type="submit"
+                className={cn(
+                  "px-4 py-2",
+                  "bg-primary hover:bg-primary/90",
+                  "transition-colors duration-200"
+                )}
+              >
+                Přidat hráče
               </Button>
             </div>
           </form>

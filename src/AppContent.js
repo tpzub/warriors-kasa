@@ -15,6 +15,7 @@ import Login from './components/Login';
 import PublicView from './components/PublicView';
 import PublicPenalties from './components/PublicPenalties';
 import Platba from './components/Platba';
+import SeasonManagement from './components/SeasonManagement';
 import { collection, getDocs, increment, doc, updateDoc, addDoc, deleteDoc, getDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { updateHracData, fetchSpecificHracData } from './lib/firebaseService';
@@ -493,6 +494,13 @@ const AppContent = () => {
                 )}
                 {activePage === 'payment' && (
                   <Platba />
+                )}
+                {activePage === 'season' && (
+                  <SeasonManagement 
+                    hraci={hraci} 
+                    pokuty={pokuty} 
+                    fetchHraci={fetchHraci}
+                  />
                 )}
               </>
             ) : (
